@@ -1,0 +1,17 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_yellow"
+    tools:context="com.android.grubox.fragments.TagFragment">
+
+  <android.support.v7.widget.RecyclerView
+      android:layout_width="match_parent"
+      android:paddingTop="10dp"
+      android:layout_height="wrap_content"
+      android:id="@+id/tag_recycleview"
+      >
+
+  </android.support.v7.widget.RecyclerView>
+
+</FrameLayout>

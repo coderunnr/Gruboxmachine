@@ -49,7 +49,7 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
         videoView.setVideoURI(Uri.parse("android.resource://" + getActivity().getPackageName() + "/" + R.raw.workout));
 
 
-        image.setImageResource(productModel.getImage());
+        image.setImageBitmap(productModel.getImage());
         name.setText(productModel.getB_name()+" "+productModel.getF_name());
         price.setText(productModel.getMrp()+"");
         videoView.start();

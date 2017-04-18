@@ -2,17 +2,26 @@ package com.android.grubox.models;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.util.Log;
 
 import com.android.grubox.R;
+import com.android.grubox.activity.MainActivity;
+import com.android.grubox.activity.ProductListing;
+import com.android.grubox.databaseutils.VendingDatabase;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 /**
  * Created by root on 28/1/17.
@@ -45,30 +54,79 @@ public class ProductResponse implements Serializable{
 //            return images[random.nextInt(6)];
 //        }
 //        else{
-       return image;
+       return this.image;
 //        }
     }
 
     public void getandsetBitmapFromURL(Context context, String src) {
-        if (src == null){
+        if (src == null || src.equalsIgnoreCase("null")){
             image = BitmapFactory.decodeResource(context.getResources(), R.drawable.haldirams);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            image.compress(Bitmap.CompressFormat.PNG, 0, stream);
+            image = Bitmap.createScaledBitmap(image,50,50,true);
+//            Log.d("images; ", stream.toByteArray());
         }
         else {
+//            try {
+//                URL url = new URL(src);
+//                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+//                connection.setDoInput(true);
+//                connection.connect();
+//                Log.d("mylog:  ", src);
+//                InputStream input = connection.getInputStream();
+//                Bitmap bm = BitmapFactory.decodeStream(input);
+//                image = Bitmap.createScaledBitmap(bm,50,50,true);
+//            return myBitmap;
+                String patternString = "media";
+                Pattern pattern = Pattern.compile(patternString, Pattern.CASE_INSENSITIVE);
+                String[] myStrings = pattern.split(src);
+                Log.d("trying to fetch img: ", myStrings[0] + "Project/media" + myStrings[1]);
+
+                new FetchImage().execute(myStrings[0] + "Project/media" + myStrings[1]);
+                Log.d("Image ", "is fetched");
+//            } catch (Exception e) {
+//                // Log exception
+//
+//                Log.d("Error! : ", e.getMessage());
+////            return null;
+//            }
+        }
+
+
+    }
+    class FetchImage extends AsyncTask<String,Void,Bitmap>
+    {
+
+
+
+        @Override
+        protected Bitmap doInBackground(String... src) {
+//                VendingDatabase vendingDatabase=new VendingDatabase(MainActivity.this);
             try {
-                URL url = new URL(src);
+                URL url = new URL(src[0]);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setDoInput(true);
                 connection.connect();
+//                Log.d("mylog:  ", src[0]);
                 InputStream input = connection.getInputStream();
-                image = BitmapFactory.decodeStream(input);
-//            return myBitmap;
-            } catch (IOException e) {
-                // Log exception
-//            return null;
+                Bitmap bm = BitmapFactory.decodeStream(input);
+                return bm;
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bm) {
+//                Intent intent=new Intent(MainActivity.this,ProductListing.class);
+//                startActivity(intent);
+            image = Bitmap.createScaledBitmap(bm,25,25,true);
+
         }
     }
-
     public void setImage(Bitmap image) {
         this.image = image;
     }

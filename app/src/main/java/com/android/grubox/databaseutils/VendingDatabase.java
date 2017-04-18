@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import com.android.grubox.models.ProductResponse;
 
@@ -47,7 +48,7 @@ public class VendingDatabase {
     private Dbhelper ourhelper;
     private final Context ourcontext;
     private SQLiteDatabase ourdatabase;
-    public  DbBitmapUtility DbBitmapUtilityObj;
+    public  DbBitmapUtility DbBitmapUtilityObj = new DbBitmapUtility();
 
     public void createentryforcart(ProductResponse productResponse) {
 
@@ -180,8 +181,11 @@ public class VendingDatabase {
 
          List<ProductResponse> productResponses=new ArrayList<>();
 
+         int number =1;
          for(c.moveToFirst();!c.isAfterLast();c.moveToNext())
          {
+             Log.d("number", Integer.toString(number++));
+             Log.d("bytes: ", new String(c.getBlob(image)));
              ProductResponse productResponse=new ProductResponse();
              productResponse.setCatTag(c.getString(catTag));
              productResponse.setImage(DbBitmapUtilityObj.getImage(c.getBlob(image)));

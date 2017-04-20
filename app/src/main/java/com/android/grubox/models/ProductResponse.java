@@ -63,7 +63,7 @@ public class ProductResponse implements Serializable{
             image = BitmapFactory.decodeResource(context.getResources(), R.drawable.haldirams);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             image.compress(Bitmap.CompressFormat.PNG, 0, stream);
-            image = Bitmap.createScaledBitmap(image,50,50,true);
+            image = Bitmap.createScaledBitmap(image,100,100,true);
 //            Log.d("images; ", stream.toByteArray());
         }
         else {
@@ -123,7 +123,7 @@ public class ProductResponse implements Serializable{
         protected void onPostExecute(Bitmap bm) {
 //                Intent intent=new Intent(MainActivity.this,ProductListing.class);
 //                startActivity(intent);
-            image = Bitmap.createScaledBitmap(bm,25,25,true);
+            image = Bitmap.createScaledBitmap(bm,300,300,true);
 
         }
     }

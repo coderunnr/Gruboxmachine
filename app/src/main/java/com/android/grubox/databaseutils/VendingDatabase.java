@@ -27,6 +27,7 @@ public class VendingDatabase {
     public static final String KEY_NAME="product_name";
     public static final String KEY_UNITS="product_units";
     public static final String KEY_PRICE="price";
+     public static final String KEY_CARTIMAGE="image";
 
      public static final String KEY_PID="product_id";
      public static final String KEY_IMAGE="image";
@@ -63,16 +64,16 @@ public class VendingDatabase {
             return;
         }
 
-
         ContentValues cv=new ContentValues();
         cv.put(KEY_SUBID,productResponse.getId());
         cv.put(KEY_NAME,productResponse.getB_name()+" "+productResponse.getF_name());
         cv.put(KEY_PRICE,productResponse.getMrp());
         cv.put(KEY_UNITS,productResponse.getQuantity_cart());
-
+        cv.put(KEY_IMAGE, DbBitmapUtilityObj.getBytes(productResponse.getImage()));
         ourdatabase.insert(DATABASE_TABLE,null,cv);
 
     }
+
      public int getRowandCol(int product_id)
      {
 
@@ -87,7 +88,7 @@ public class VendingDatabase {
      }
 
     public List<ProductResponse> getCartData() {
-        String[] columns=new String[] {KEY_ROWID,KEY_NAME,KEY_SUBID,KEY_PRICE,KEY_UNITS};
+        String[] columns=new String[] {KEY_ROWID,KEY_NAME,KEY_SUBID,KEY_PRICE,KEY_UNITS,KEY_CARTIMAGE};
 
         Cursor c=ourdatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);
         int sub_id=c.getColumnIndex(KEY_SUBID);
@@ -95,7 +96,7 @@ public class VendingDatabase {
         int price=c.getColumnIndex(KEY_PRICE);
         int row_id=c.getColumnIndex(KEY_ROWID);
         int units=c.getColumnIndex(KEY_UNITS);
-
+        int image = c.getColumnIndex(KEY_CARTIMAGE);
 
 
         List<ProductResponse> databaseModels=new ArrayList<>();
@@ -107,6 +108,7 @@ public class VendingDatabase {
             databaseModel.setMrp(c.getInt(price));
             databaseModel.setQuantity_cart(c.getInt(units));
             databaseModel.setRow_id(c.getInt(row_id));
+            databaseModel.setImage(DbBitmapUtilityObj.getImage(c.getBlob(image)));
             databaseModels.add(databaseModel);
 
         }
@@ -426,13 +428,10 @@ public class VendingDatabase {
         @Override
         public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE "+DATABASE_TABLE+" ("+KEY_ROWID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
-        KEY_NAME+" TEXT NOT NULL, "+KEY_SUBID+" INTEGER NOT NULL, "+KEY_UNITS+" INTEGER, "+KEY_PRICE+" INTEGER NOT NULL);");
+        KEY_NAME+" TEXT NOT NULL, "+KEY_SUBID+" INTEGER NOT NULL, "+KEY_UNITS+" INTEGER, "+KEY_CARTIMAGE+" BLOB, "+KEY_PRICE+" INTEGER NOT NULL);");
 
         db.execSQL("CREATE TABLE "+DATABASE_TABLEPRODUCT+" ("+KEY_ROWID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
                     KEY_BNAME+" TEXT NOT NULL, "+KEY_CNAME+" TEXT NOT NULL, "+KEY_FNAME+" TEXT NOT NULL, "+KEY_IMAGE+" BLOB, "+KEY_CATTAG+" TEXT, "+KEY_PERCEPTAG+" TEXT, "+KEY_PID+" INTEGER NOT NULL, "+KEY_UNITS+" INTEGER, "+KEY_CATID+" INTEGER, "+KEY_ROW+" INTEGER, "+KEY_COL+" INTEGER, "+KEY_MRP+" INTEGER NOT NULL);");
-
-
-
 
         }
 

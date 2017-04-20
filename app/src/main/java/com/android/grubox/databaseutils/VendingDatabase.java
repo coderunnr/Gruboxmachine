@@ -82,9 +82,21 @@ public class VendingDatabase {
          Cursor c=ourdatabase.query(DATABASE_TABLEPRODUCT, columns,KEY_PID+"="+product_id, null, null, null, null);
          int row=c.getColumnIndex(KEY_ROW);
          int col=c.getColumnIndex(KEY_COL);
+         int quantity = c.getColumnIndex(KEY_UNITS);
          c.moveToFirst();
+         int max_quantity = 0;
+         int max_row = c.getInt(row);
+         int max_col = c.getInt(col);
+         for(c.moveToFirst();!c.isAfterLast();c.moveToNext())
+         {
+             if(max_quantity < c.getInt(quantity) ) {
+                 max_quantity = c.getInt(quantity);
+                 max_row = c.getInt(row);
+                 max_col= c.getInt(col);
+             }
+         }
 
-         return c.getInt(row)*10+c.getInt(col);
+         return max_row*10 + max_col;
      }
 
     public List<ProductResponse> getCartData() {

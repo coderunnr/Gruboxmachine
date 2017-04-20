@@ -107,7 +107,7 @@ public class ConsoleActivity extends SerialPortActivity {
 
 
 		callAgain();
-		
+
 	}
 
 	public void callAgain()

@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <permission
@@ -30,8 +29,8 @@
     <application
         android:name=".activity.Application"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:hardwareAccelerated="false"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
@@ -42,7 +41,6 @@
         <activity android:name=".activity.ProductListing" />
         <activity android:name=".activity.ConsoleActivity" />
         <activity android:name=".activity.MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -51,11 +49,10 @@
         </activity>
         <activity android:name=".activity.GrucardActivity" />
         <activity android:name=".activity.PayWithCash" />
-        <activity android:name=".activity.PayWithPaytm" >
-
-            </activity>
+        <activity android:name=".activity.PayWithPaytm"></activity>
         <activity android:name=".activity.TestMachine" />
-        <activity android:name=".activity.TestMachineMain"></activity>
+        <activity android:name=".activity.TestMachineMain" />
+        <activity android:name=".activity.CashCommunicate"></activity>
     </application>
 
 </manifest>

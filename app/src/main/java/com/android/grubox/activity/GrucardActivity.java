@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.grubox.R;
 import com.android.grubox.databaseutils.Utility;
@@ -15,7 +16,7 @@ import java.sql.SQLException;
 
 public class GrucardActivity extends SerialPortActivity {
 
-
+    ProductResponse productResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +53,13 @@ public class GrucardActivity extends SerialPortActivity {
 //            byte[] mbuffer= Utility.getBytesOfProduct(vendingDatabase.getRowandCol(productResponse.getId()));
 //            vendingDatabase.close();
 
-            //byte[] mbuffer=new byte[]{0x01,0x09,0x03,0x01,0x09,0x00,0x00,0x00,0x00,0x00,0x01,0x03};
-            byte[] mbuffer=new byte[]{0x01,0x03,0x01,0x01,0x01,0x02};
+//            byte[] mbuffer=new byte[]{ 0x01, 0x09, 0x03, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x0B };
+//            byte[] mbuffer=new byte[]{0x01,0x02,0x07,0x01,0x04};
+            byte[] mbuffer=getIntent().getByteArrayExtra("byte");
             mOutputStream.write(mbuffer);
 //          mOutputStream.write(name.getBytes());
             Log.v(getClass().getSimpleName(),mOutputStream.toString());
+//            callAgain();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,15 +67,27 @@ public class GrucardActivity extends SerialPortActivity {
     }
 
 
-
     @Override
     protected void onDataReceived(final byte[] buffer, final int size) {
         runOnUiThread(new Runnable() {
             public void run() {
 //				if (mReception != null) {
-                Log.v(getClass().getSimpleName(),buffer.toString());
+                String s="";
+                for(int i=0;i<size;i++) {
+                    Log.v(getClass().getSimpleName(), String.format("%02x", buffer[i]));
+//                    Log.v(getClass().getSimpleName(), String.valueOf(buffer[i]));
+                    s=s+String.format("%02x", buffer[i])+" ";
+                }
+
+                Toast.makeText(GrucardActivity.this,s,Toast.LENGTH_LONG).show();
+
+//                for(int i=0;i<size;i++) {
+//
+//                    Log.v(getClass().getSimpleName(),Integer.toHexString(buffer[i]));
+////                    Log.v(getClass().getSimpleName(), String.valueOf(buffer[i]));
+//                }
                 Log.v(getClass().getSimpleName(),size+"");
-                Log.v("ngcgj","hjvu");
+
                 finish();
 //				}
 //				else {

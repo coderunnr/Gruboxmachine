@@ -77,16 +77,16 @@ public class VendingDatabase {
      public int getRowandCol(int product_id)
      {
 
-         String[] columns=new String[] {KEY_ROWID,KEY_COL,KEY_ROW};
+         String[] columns=new String[] {KEY_ROWID,KEY_COL,KEY_ROW,KEY_UNITS};
 
          Cursor c=ourdatabase.query(DATABASE_TABLEPRODUCT, columns,KEY_PID+"="+product_id, null, null, null, null);
          int row=c.getColumnIndex(KEY_ROW);
          int col=c.getColumnIndex(KEY_COL);
          int quantity = c.getColumnIndex(KEY_UNITS);
-         c.moveToFirst();
-         int max_quantity = 0;
-         int max_row = c.getInt(row);
-         int max_col = c.getInt(col);
+         int max_quantity =0;
+         int max_row=0;
+         int max_col=0;
+
          for(c.moveToFirst();!c.isAfterLast();c.moveToNext())
          {
              if(max_quantity < c.getInt(quantity) ) {

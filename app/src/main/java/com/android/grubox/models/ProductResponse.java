@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
 public class ProductResponse implements Serializable{
     int id;
     int row_id;
-    Bitmap image = null;
+    transient Bitmap image = null;
     String b_name,f_name,c_name;
     int mrp;
     String catTag,percepTag;

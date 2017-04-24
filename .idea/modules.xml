@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Gruboxmachine.iml" filepath="$PROJECT_DIR$/Gruboxmachine.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/gruboxserial-master.iml" filepath="$PROJECT_DIR$/gruboxserial-master.iml" />
     </modules>
   </component>
 </project>

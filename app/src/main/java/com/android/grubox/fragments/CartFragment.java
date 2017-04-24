@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.grubox.R;
+import com.android.grubox.activity.CashCommunicate;
 import com.android.grubox.activity.ConsoleActivity;
 import com.android.grubox.activity.GrucardActivity;
 import com.android.grubox.activity.PayWithCash;
@@ -88,9 +89,9 @@ public class CartFragment extends Fragment {
         v.findViewById(R.id.cart_pay_with_grucard).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences sp = getActivity().getSharedPreferences("grubox_port", getActivity().MODE_PRIVATE);
-                sp.edit().putInt("called",1).apply();
-                Intent intent=new Intent(getContext(), GrucardActivity.class);
+//                SharedPreferences sp = getActivity().getSharedPreferences("grubox_port", getActivity().MODE_PRIVATE);
+//                sp.edit().putInt("called",0).apply();
+                Intent intent=new Intent(getContext(), CashCommunicate.class);
                 startActivity(intent);
 
 

@@ -25,6 +25,7 @@ import android.os.Bundle;
 import com.android.grubox.R;
 import com.android.grubox.SerialPort;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -44,11 +45,11 @@ public abstract class SerialPortActivity extends Activity {
 		@Override
 		public void run() {
 			super.run();
-			int i=0;
+			int i = 0;
 			while(!isInterrupted()&&i==0) {
 				int size;
 				try {
-					byte[] buffer = new byte[64];
+					byte[] buffer = new byte[128];
 					if (mInputStream == null) return;
 					size = mInputStream.read(buffer);
 					if (size > 0) {
@@ -61,6 +62,8 @@ public abstract class SerialPortActivity extends Activity {
 					return;
 				}
 			}
+
+
 		}
 	}
 

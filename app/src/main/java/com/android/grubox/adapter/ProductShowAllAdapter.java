@@ -149,7 +149,7 @@ public class ProductShowAllAdapter extends RecyclerView.Adapter<ProductShowAllAd
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int pos) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
             holder.card.setVisibility(View.VISIBLE);
             holder.main_layout.setVisibility(View.VISIBLE);
@@ -159,7 +159,7 @@ public class ProductShowAllAdapter extends RecyclerView.Adapter<ProductShowAllAd
                 holder.main_layout.setBackground(productListing.getResources().getDrawable(android.R.color.transparent));
             }
 
-            final int position = pos / 2;
+//            final int position = pos / 2;
 
 //            holder.v.setOnClickListener(new View.OnClickListener() {
 //                @Override

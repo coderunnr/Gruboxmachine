@@ -59,6 +59,9 @@ public class GrucardActivity extends SerialPortActivity {
             mOutputStream.write(mbuffer);
 //          mOutputStream.write(name.getBytes());
             Log.v(getClass().getSimpleName(),mOutputStream.toString());
+            for(int i=0;i<mbuffer.length;i++) {
+                Log.v(getClass().getSimpleName(),String.format("%02x", mbuffer[i]));
+            }
 //            callAgain();
         } catch (IOException e) {
             e.printStackTrace();

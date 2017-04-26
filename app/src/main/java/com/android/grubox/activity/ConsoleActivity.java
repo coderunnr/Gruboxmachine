@@ -119,7 +119,7 @@ public class ConsoleActivity extends SerialPortActivity {
 			Log.v("REsponse",productResponse.getColumn()+"-"+productResponse.getRow());
 			byte[] mbuffer=Utility.getBytesOfProduct(vendingDatabase.getRowandCol(productResponse.getId()));
 			vendingDatabase.close();
-			//byte[] mbuffer=new byte[]{0x01,0x09,0x03,0x01,0x09,0x00,0x00,0x00,0x00,0x00,0x01,0x03};
+			//byte[] mbuffer=new byte[]{0x01,0x09,0x03,0x01,0x09,0x00,0x00,0x00,0x00,0x00,0x01,0x03}	;
 			//	byte[] mbuffer=new byte[]{0x01,0x01,0x00,0x01};
 			mOutputStream.write(mbuffer);
 			Log.v(getClass().getSimpleName(),mOutputStream.toString());

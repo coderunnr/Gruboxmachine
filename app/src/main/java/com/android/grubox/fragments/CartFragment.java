@@ -91,7 +91,10 @@ public class CartFragment extends Fragment {
             public void onClick(View view) {
 //                SharedPreferences sp = getActivity().getSharedPreferences("grubox_port", getActivity().MODE_PRIVATE);
 //                sp.edit().putInt("called",0).apply();
+
+//                Intent intent=new Intent(getContext(), PayWithPaytm.class);
                 Intent intent=new Intent(getContext(), CashCommunicate.class);
+                intent.putExtra("amount",total);
                 startActivity(intent);
 
 

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.grubox.R;
@@ -34,6 +35,9 @@ public class CashCommunicate extends AppCompatActivity {
     int RESPONSESIZE;
     String RESPONSETYPE;
     int balance;
+    int amount;
+    TextView amountview;
+    TextView Requiredamountview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,13 @@ public class CashCommunicate extends AppCompatActivity {
 //       // openCash();
 //
         editText=(EditText)findViewById(R.id.edit_cashcommunicate);
+        amountview= (TextView)findViewById(R.id.currentamount);
+        amountview.setText("Please enter Bill!");
+
+
+        amount=getIntent().getIntExtra("amount",10)*100;
+        Requiredamountview = (TextView)findViewById(R.id.Requiredamount);
+        Requiredamountview.setText("Requiredamount: " + Integer.toString(amount));
 //
 ////        Handler handler = new Handler();
 ////        handler.postDelayed(new Runnable() {
@@ -295,12 +306,13 @@ public class CashCommunicate extends AppCompatActivity {
             balance = ByteBuffer.wrap(Arrays.copyOfRange(RESPONSE, 3, 7)).getInt();
             Log.v(getClass().getSimpleName(), "SYNCAMOUNT Response received! ");
             Log.v(getClass().getSimpleName(), "balance = " + balance);
-            if (balance<3000){
+            if (balance < amount){
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
+                amountview.setText(Integer.toString(balance));
                 Intent intent = new Intent(CashCommunicate.this, GrucardActivity.class);
                 intent.putExtra("BYTES", QUERYAMOUNT);
                 intent.putExtra("REQUESTTYPE", "QUERYAMOUNT");
@@ -313,15 +325,28 @@ public class CashCommunicate extends AppCompatActivity {
 //                intent.putExtra("REQUESTTYPE", "SYNCAMOUNT");
 //                startActivityForResult(intent, 2);
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(1000);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
+                Log.v(getClass().getSimpleName(), "balance: " + Integer.toString(balance));
+                Log.v(getClass().getSimpleName(), "Requiredamount: " + Integer.toString(amount));
                 Intent intent=new Intent(CashCommunicate.this,GrucardActivity.class);
                 intent.putExtra("BYTES", DISABLEBANKNOTE);
                 intent.putExtra("REQUESTTYPE", "FINALLYDISABLEBANKNOTE");
                 startActivityForResult(intent, 2);
                 Log.v(getClass().getSimpleName(), "Required Amount received! ");
+
+                try {
+                    Thread.sleep(1000);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+//                SharedPreferences sp = getSharedPreferences("grubox_port", MODE_PRIVATE);
+//                sp.edit().putInt("called",0).apply();
+                Intent intenttovend=new Intent(CashCommunicate.this, PayWithCash.class);
+                startActivity(intenttovend);
+
             }
         }
         else if((RESPONSETYPE).equals("FINALLYDISABLEBANKNOTE")){

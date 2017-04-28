@@ -108,6 +108,14 @@ Java_com_android_grubox_SerialPort_open(JNIEnv *env, jclass type, jstring path,
         cfmakeraw(&cfg);
         cfsetispeed(&cfg, speed);
         cfsetospeed(&cfg, speed);
+//        cfg.c_cflag &= ~CSTOPB;
+//        cfg.c_iflag |= IXON;
+//        cfg.c_iflag |= IXOFF;
+//        cfg.c_oflag |= OPOST;
+        cfg.c_cflag &= ~CSTOPB;            // 1 stop bit
+        cfg.c_cflag &= ~CRTSCTS;           // Disable hardware flow control
+        cfg.c_cc[VMIN]  = 1;
+        cfg.c_cc[VTIME] = 2;
 
         if (tcsetattr(fd, TCSANOW, &cfg))
         {

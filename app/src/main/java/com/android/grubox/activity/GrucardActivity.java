@@ -1,5 +1,6 @@
 package com.android.grubox.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,8 @@ import java.sql.SQLException;
 public class GrucardActivity extends SerialPortActivity {
 
     ProductResponse productResponse;
+
+    String requesttype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class GrucardActivity extends SerialPortActivity {
 //				return false;
 //			}
 //		});
+        Log.v(getClass().getSimpleName(), "In GruCard Activity before try block!! ");
         try {
 //            VendingDatabase vendingDatabase=new VendingDatabase(GrucardActivity.this);
 //            vendingDatabase.open();
@@ -55,7 +59,13 @@ public class GrucardActivity extends SerialPortActivity {
 
 //            byte[] mbuffer=new byte[]{ 0x01, 0x09, 0x03, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x0B };
 //            byte[] mbuffer=new byte[]{0x01,0x02,0x07,0x01,0x04};
-            byte[] mbuffer=getIntent().getByteArrayExtra("byte");
+            Log.v(getClass().getSimpleName(), "In GruCard Activity!! ");
+            byte[] mbuffer=getIntent().getByteArrayExtra("BYTES");
+            requesttype=getIntent().getStringExtra("REQUESTTYPE");
+
+//            if(requesttype == "ENABLEBANKNOTE"){
+//
+//            }
             mOutputStream.write(mbuffer);
 //          mOutputStream.write(name.getBytes());
             Log.v(getClass().getSimpleName(),mOutputStream.toString());
@@ -90,7 +100,11 @@ public class GrucardActivity extends SerialPortActivity {
 ////                    Log.v(getClass().getSimpleName(), String.valueOf(buffer[i]));
 //                }
                 Log.v(getClass().getSimpleName(),size+"");
-
+                Intent intent=new Intent();
+                intent.putExtra("BYTES",buffer);
+                intent.putExtra("SIZE",size);
+                intent.putExtra("RESPONSETYPE", requesttype);
+                setResult(2,intent);
                 finish();
 //				}
 //				else {

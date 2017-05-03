@@ -18,6 +18,11 @@ public class URL1 {
         return BASE_URL+"/Vmachine/?format=json";
     }
 
+    public static String getUnsuccessfulVendurl()
+    {
+        return BASE_URL+"/UnsuccessfulVends";
+    }
+
     public static String getWhouseurl()
     {
         return BASE_URL+"/Whouse/?format=json";

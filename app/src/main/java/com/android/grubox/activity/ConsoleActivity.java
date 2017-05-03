@@ -139,6 +139,11 @@ public class ConsoleActivity extends SerialPortActivity {
 //				if (mReception != null) {
 					Log.v(getClass().getSimpleName(),buffer.toString());
 					Log.v(getClass().getSimpleName(),size+"");
+					for(int i=0;i<size;i++) {
+						Log.v(getClass().getSimpleName(), String.format("%02x", buffer[i]));
+	//                    Log.v(getClass().getSimpleName(), String.valueOf(buffer[i]));
+//						s=s+String.format("%02x", buffer[i])+" ";
+					}
 					setResult(99);
 					timer.cancel();
 					finish();

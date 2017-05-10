@@ -177,23 +177,23 @@ public class ProductShowAllAdapter extends RecyclerView.Adapter<ProductShowAllAd
                 return true;
             }
         });
-            holder.addtoCart.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    productListing.addtoCart(productModels.get(position));
-                }
-            });
+//            holder.addtoCart.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    productListing.addtoCart(productModels.get(position));
+//                }
+//            });
             holder.name.setText(productModels.get(position).getB_name());
             holder.fname.setText(productModels.get(position).getF_name());
             holder.image.setImageBitmap(productModels.get(position).getImage());
             holder.price.setText(productModels.get(position).getMrp() + "");
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                holder.addtoCart.setBackgroundResource(R.drawable.add);
-            }
-            else
-            {
-                holder.addtoCart.setBackgroundResource(R.drawable.add);
-            }
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//                holder.addtoCart.setBackgroundResource(R.drawable.add);
+//            }
+//            else
+//            {
+//                holder.addtoCart.setBackgroundResource(R.drawable.add);
+//            }
 
             startAnimation(holder.image);
 

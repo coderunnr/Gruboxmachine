@@ -13,6 +13,8 @@ import com.android.grubox.activity.MainActivity;
 import com.android.grubox.activity.ProductListing;
 import com.android.grubox.databaseutils.VendingDatabase;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,6 +30,7 @@ import java.util.regex.Pattern;
  */
 public class ProductResponse implements Serializable{
     int id;
+    int Pid;
     int row_id;
     transient Bitmap image = null;
     String b_name,f_name,c_name;
@@ -143,8 +146,16 @@ public class ProductResponse implements Serializable{
         return id;
     }
 
+    public int getPId() {
+        return Pid;
+    }
+
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setPId(int Pid) {
+        this.Pid = Pid;
     }
 
     public String getB_name() {
@@ -217,5 +228,34 @@ public class ProductResponse implements Serializable{
 
     public void setColumn(int column) {
         this.column = column;
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 31). // two randomly chosen prime numbers
+                // if deriving: appendSuper(super.hashCode()).
+                        append(Pid).
+                        toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        // If the object is compared with itself then return true
+        if (o == this) {
+            return true;
+        }
+
+        /* Check if o is an instance of Complex or not
+          "null instanceof [type]" also returns false */
+        if (!(o instanceof ProductResponse)) {
+            return false;
+        }
+
+        // typecast o to Complex so that we can compare data members
+        ProductResponse c = (ProductResponse) o;
+
+        // Compare the data members and return accordingly
+        return Double.compare(this.Pid, c.Pid) == 0;
     }
 }

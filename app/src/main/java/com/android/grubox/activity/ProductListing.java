@@ -8,6 +8,7 @@ import android.gesture.Prediction;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.PowerManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 import com.android.grubox.R;
 import com.android.grubox.databaseutils.VendingDatabase;
 import com.android.grubox.fragments.CarouselMain;
+import com.android.grubox.fragments.CarouselOffers;
 import com.android.grubox.fragments.CartFragment;
 import com.android.grubox.fragments.ProductDetailFragment;
 import com.android.grubox.fragments.ProductShowFragment;
@@ -55,6 +57,19 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
           //  mp.start();
         }
     }
+
+
+    Handler handler = new Handler();
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+
+            //update Time, News fragment
+            //Sync any items necessary, (maybe update inventory, update advetisements, etc)....
+
+            handler.postDelayed(runnable, 10000000);
+        }
+    };
 
 
 
@@ -135,12 +150,12 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
                 e.printStackTrace();
             }
             Fragment fragment;
-            if(size==0)
-             fragment=new CarouselMain();
-            else {
-                fragment = new CartFragment();
-                cartFragment=(CartFragment)fragment;
-            }
+//            if(size==0)
+//             fragment=new CarouselMain();
+//            else {
+            fragment = new CartFragment();
+            cartFragment=(CartFragment)fragment;
+//            }
 //            cartFragment=new CartFragment();
 
             // In case this activity was started with special instructions from an
@@ -151,9 +166,41 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container_lower, fragment).commit();
         }
+        if (findViewById(R.id.fragment_container_left) != null) {
+
+            // However, if we're being restored from a previous state,
+            // then we don't need to do anything and should return or else
+            // we could end up with overlapping fragments.
+            if (savedInstanceState != null) {
+                return;
+            }
+
+            // Create a new Fragment to be placed in the activity layout
+//            VendingDatabase vendingDatabase=new VendingDatabase(ProductListing.this);
+//            int size=0;
+//            try {
+//                vendingDatabase.open();
+//                size= vendingDatabase.getCartData().size();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+            Fragment fragment;
+//            if(size==0)
+            fragment=new CarouselOffers();
+//            else {
+//                fragment = new CartFragment();
+//                cartFragment=(CartFragment)fragment;
+//            }
+//            cartFragment=new CartFragment();
+
+            // In case this activity was started with special instructions from an
+            // Intent, pass the Intent's extras to the fragment as arguments
 
 
-
+            // Add the fragment to the 'fragment_container' FrameLayout
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container_left, fragment).commit();
+        }
 
 
         mp = MediaPlayer.create(ProductListing.this, R.raw.queenbreakfree);
@@ -165,6 +212,8 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
 //
 //        GestureOverlayView gestureOverlayView=(GestureOverlayView)findViewById(R.id.gesture_recongizer);
 //        gestureOverlayView.addOnGesturePerformedListener(this);
+
+        handler.postDelayed(runnable, 10000000);
 
     }
 
@@ -324,10 +373,10 @@ if(emptyCart)
         try {
             vendingDatabase.open();
             vendingDatabase.deleteEntryforcart(productModel.getRow_id());
-            if(vendingDatabase.getCartData().size()==0)
-            {
-                showCarousel();
-            }
+//            if(vendingDatabase.getCartData().size()==0)
+//            {
+//                showCarousel();
+//            }
             vendingDatabase.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -383,6 +432,12 @@ if(emptyCart)
 //        wakeLock.release();
         mp.release();
 
+    }
+
+    @Override
+    public void onDestroy () {
+        handler.removeCallbacks(runnable);
+        super.onDestroy();
     }
 
 //    @Override

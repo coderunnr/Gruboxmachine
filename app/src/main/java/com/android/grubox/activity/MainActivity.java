@@ -3,6 +3,7 @@ package com.android.grubox.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,6 +36,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    Handler handler = new Handler();
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            //Second fragment after 5 seconds appears
+//            getSupportFragmentManager().beginTransaction()
+//                    .replace(R.id.fl, new FragmentB())
+//                    .commit();
+        }
+    };
+
+//    handler.postDelayed(runnable, 5000);
+
     public class ProductInfo extends AsyncTask<Void,Void,String>
     {
         String url;
@@ -66,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 //                    productResponse.getandsetBitmapFromURL(getBaseContext(), "http://www.theartstory.org/images20/works/munch_edward_3.jpg");
 //                    }
                     productResponse.setId(Stockid.getInt("id"));
+                    productResponse.setPId(Pid.getInt("id"));
                     productResponse.setB_name(Pid.getString("Bname"));
                     productResponse.setC_name(Pid.getString("Cname"));
                     productResponse.setF_name(Pid.getString("Fname"));
@@ -120,5 +136,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
 
         }
+    }
+
+    @Override
+    public void onDestroy () {
+        handler.removeCallbacks(runnable);
+        super.onDestroy();
     }
 }

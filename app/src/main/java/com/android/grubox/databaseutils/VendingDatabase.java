@@ -55,7 +55,7 @@ public class VendingDatabase {
 
         String[] columns=new String[] {KEY_ROWID,KEY_SUBID};
 
-        Cursor c=ourdatabase.query(DATABASE_TABLE, columns,KEY_SUBID+"="+productResponse.getId(), null, null, null, null);
+        Cursor c=ourdatabase.query(DATABASE_TABLE, columns,KEY_SUBID+"="+productResponse.getPId(), null, null, null, null);
         int sub_id=c.getColumnIndex(KEY_SUBID);
         int row_id=c.getColumnIndex(KEY_ROWID);
         for(c.moveToFirst();!c.isAfterLast();c.moveToNext())
@@ -65,7 +65,7 @@ public class VendingDatabase {
         }
 
         ContentValues cv=new ContentValues();
-        cv.put(KEY_SUBID,productResponse.getId());
+        cv.put(KEY_SUBID,productResponse.getPId());
         cv.put(KEY_NAME,productResponse.getB_name()+" "+productResponse.getF_name());
         cv.put(KEY_PRICE,productResponse.getMrp());
         cv.put(KEY_UNITS,productResponse.getQuantity_cart());
@@ -115,7 +115,7 @@ public class VendingDatabase {
         for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
 
             ProductResponse databaseModel=new ProductResponse();
-            databaseModel.setId(c.getInt(sub_id));
+            databaseModel.setPId(c.getInt(sub_id));
             databaseModel.setF_name(c.getString(sub_name));
             databaseModel.setMrp(c.getInt(price));
             databaseModel.setQuantity_cart(c.getInt(units));
@@ -154,7 +154,7 @@ public class VendingDatabase {
 //             for(Integer integer:categories) {
 
                  ContentValues cv = new ContentValues();
-                 cv.put(KEY_PID, productResponse.getId());
+                 cv.put(KEY_PID, productResponse.getPId());
                  cv.put(KEY_BNAME, productResponse.getB_name());
                  cv.put(KEY_CNAME, productResponse.getC_name());
                  cv.put(KEY_FNAME, productResponse.getF_name());
@@ -198,8 +198,8 @@ public class VendingDatabase {
          int number =1;
          for(c.moveToFirst();!c.isAfterLast();c.moveToNext())
          {
-             Log.d("number", Integer.toString(number++));
-             Log.d("bytes: ", new String(c.getBlob(image)));
+//             Log.d("number", Integer.toString(number++));
+//             Log.d("bytes: ", new String(c.getBlob(image)));
              ProductResponse productResponse=new ProductResponse();
              productResponse.setCatTag(c.getString(catTag));
              productResponse.setImage(DbBitmapUtilityObj.getImage(c.getBlob(image)));
@@ -209,7 +209,7 @@ public class VendingDatabase {
              productResponse.setB_name(c.getString(b_name));
              productResponse.setC_name(c.getString(c_name));
              productResponse.setF_name(c.getString(f_name));
-             productResponse.setId(c.getInt(id));
+             productResponse.setPId(c.getInt(id));
              productResponse.setPercepTag(c.getString(percepTag));
              productResponse.setRow(c.getInt(row));
              productResponse.setRow_id(c.getInt(row_id));
@@ -256,7 +256,7 @@ public class VendingDatabase {
              productResponse.setB_name(c.getString(b_name));
              productResponse.setC_name(c.getString(c_name));
              productResponse.setF_name(c.getString(f_name));
-             productResponse.setId(c.getInt(id));
+             productResponse.setPId(c.getInt(id));
              productResponse.setPercepTag(c.getString(percepTag));
              productResponse.setRow(c.getInt(row));
              productResponse.setRow_id(c.getInt(row_id));
@@ -321,7 +321,7 @@ public class VendingDatabase {
              productResponse.setB_name(c.getString(b_name));
              productResponse.setC_name(c.getString(c_name));
              productResponse.setF_name(c.getString(f_name));
-             productResponse.setId(c.getInt(id));
+             productResponse.setPId(c.getInt(id));
              productResponse.setPercepTag(c.getString(percepTag));
              productResponse.setRow(c.getInt(row));
              productResponse.setRow_id(c.getInt(row_id));
@@ -362,7 +362,7 @@ public class VendingDatabase {
              productResponse.setB_name(c.getString(b_name));
              productResponse.setC_name(c.getString(c_name));
              productResponse.setF_name(c.getString(f_name));
-             productResponse.setId(c.getInt(id));
+             productResponse.setPId(c.getInt(id));
              productResponse.setPercepTag(c.getString(percepTag));
              productResponse.setRow(c.getInt(row));
              productResponse.setRow_id(c.getInt(row_id));
@@ -403,7 +403,7 @@ public class VendingDatabase {
              productResponse.setB_name(c.getString(b_name));
              productResponse.setC_name(c.getString(c_name));
              productResponse.setF_name(c.getString(f_name));
-             productResponse.setId(c.getInt(id));
+             productResponse.setPId(c.getInt(id));
              productResponse.setPercepTag(c.getString(percepTag));
              productResponse.setRow(c.getInt(row));
              productResponse.setRow_id(c.getInt(row_id));

@@ -2,36 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="wrap_content"
+    android:layout_width="160dp"
     android:clipToPadding="false"
     android:layout_gravity="center_horizontal"
     android:id="@+id/recycleitem_linearlayout_product_list"
     android:background="@android:color/transparent"
     android:layout_height="wrap_content">
-
-
-
-    <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:background="@drawable/gradient_up"-->
-        <!--android:layout_height="2dp"-->
-        <!--android:id="@+id/upper_shadow"-->
-        <!--/>-->
-
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-
-        <!--<View-->
-            <!--android:layout_width="2dp"-->
-            <!--android:background="@drawable/gradient_left"-->
-            <!--android:id="@+id/left_shadow"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_alignParentLeft="true"-->
-
-            <!--/>-->
-
-
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -41,26 +17,16 @@
         android:id="@+id/card_item"
         app:cardElevation="8dp"
         app:cardCornerRadius="4dp"
-
-
         >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
 
-            android:orientation="vertical"
-            >
-
-
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_centerHorizontal="true"
-        android:adjustViewBounds="true"
-
-        android:id="@+id/product_image"
-        />
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_centerHorizontal="true"
+                android:adjustViewBounds="true"
+                android:id="@+id/product_image"
+                />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -84,49 +50,73 @@
                 android:layout_gravity="center_horizontal"
                 android:id="@+id/product_name_fname"
                 />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/product_name_fname"
-                android:layout_centerInParent="true"
-                android:fontFamily="sans-serif-light"
-                android:textSize="13sp"
-                android:textAlignment="center"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/product_price"
-                />
+                android:textColor="#000000"
+                android:padding="7dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="12dp"
+                android:background="@drawable/food_item_price"
+                android:text= "USD 99"
+                android:id="@id/product_price"/>
 
-                <Button
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:minHeight="0dp"
-                    android:id="@+id/add_to_cart"
-                    android:layout_gravity="center_horizontal"
-                    android:textAllCaps="false"
-                    android:minWidth="0dp"
-                    android:shadowColor="@color/black"
-                    android:layout_marginLeft="4dp"
-                    android:layout_below="@+id/product_name_fname"
-                    android:layout_toRightOf="@+id/product_price"
-                    android:textColor="@color/colorPrimary"
-                    />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/food_item_button"
+                android:textSize="12dp"
+                android:text="View Details"
+                android:textColor="#6E6E6E"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:id="@+id/add_to_cart"/>
 
+        </LinearLayout>
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/product_name_fname"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:fontFamily="sans-serif-light"-->
+                <!--android:textSize="13sp"-->
+                <!--android:textAlignment="center"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:id="@+id/product_price"-->
+                <!--/>-->
 
-
-
-        </RelativeLayout>
+            <!--<Button-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:minHeight="0dp"-->
+                <!--android:id="@+id/add_to_cart"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:minWidth="0dp"-->
+                <!--android:shadowColor="@color/black"-->
+                <!--android:layout_marginLeft="4dp"-->
+                <!--android:layout_below="@+id/product_name_fname"-->
+                <!--android:layout_toRightOf="@+id/product_price"-->
+                <!--android:textColor="@color/colorPrimary"-->
+                <!--/>-->
 
     </android.support.v7.widget.CardView>
-        <!--<View-->
-            <!--android:layout_width="2dp"-->
-            <!--android:background="@drawable/gradient_right"-->
-            <!--android:id="@+id/right_shadow"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_alignParentRight="true"-->
+    <!--<View-->
+    <!--android:layout_width="2dp"-->
+    <!--android:background="@drawable/gradient_right"-->
+    <!--android:id="@+id/right_shadow"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_alignParentRight="true"-->
 
-            <!--/>-->
+    <!--/>-->
     <!--</LinearLayout>-->
-<!--<View-->
+    <!--<View-->
     <!--android:layout_width="match_parent"-->
     <!--android:background="@drawable/gradient_down"-->
     <!--android:layout_height="2dp"-->

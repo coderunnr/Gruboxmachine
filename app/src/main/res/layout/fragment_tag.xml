@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_yellow"
+    android:background="@color/white"
     tools:context="com.android.grubox.fragments.TagFragment">
 
   <android.support.v7.widget.RecyclerView

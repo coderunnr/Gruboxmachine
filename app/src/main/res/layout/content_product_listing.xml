@@ -1,216 +1,280 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="#008080"-->
+    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+    <!--tools:context="com.android.grubox.activity.ProductListing"-->
+    <!--tools:showIn="@layout/activity_product_listing">-->
+
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical"-->
+        <!--android:background="@drawable/round_corners"-->
+        <!--android:layout_margin="20dp"-->
+        <!--&gt;-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="120dp"-->
+        <!--android:orientation="vertical"-->
+        <!--android:background="@drawable/tag_background"-->
+        <!--&gt;-->
+
+        <!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:id="@+id/fragment_container_head"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:background="@drawable/tag_background"-->
+            <!--android:layout_height="60dp"-->
+            <!--/>-->
+
+        <!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:id="@+id/fragment_container_top"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:background="@color/white"-->
+            <!--android:layout_height="60dp"-->
+            <!--/>-->
+
+    <!--</LinearLayout>-->
+
+
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<!--Outer Container-->
+<FrameLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkgray"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.android.grubox.activity.ProductListing"
-    tools:showIn="@layout/activity_product_listing">
+    android:background="#1ADAEA"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/fragment_container_top"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-
-        />
-
+    <!-- All content inside-->
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="120dp"
         android:orientation="vertical"
-        >
+        android:layout_margin="35px"
+        tools:context="com.example.android.grubox_ui.MainActivity">
+
+        <!--For Container 1-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="8"
-            >
-<!--<LinearLayout-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_weight="1.5"-->
-    <!--android:background="@color/colorPrimaryLight"-->
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:background="#FFD75C"
+            android:orientation="vertical">
 
-    <!--android:padding="12dp"-->
-    <!--android:orientation="vertical"-->
-    <!--&gt;-->
+            <!--Container 1, item 1-->
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    <!--<android.support.v7.widget.CardView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="1"-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="GRUBOX"/>
 
-        <!--android:layout_marginTop="14dp"-->
-        <!--android:layout_marginBottom="7dp"-->
-        <!--android:id="@+id/card_snacks"-->
-        <!--&gt;-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="12:30 PM"
+                        android:textStyle="bold"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="your smart cafe"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="12 Maarch 2017, Monday"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <!-- Container 1, item 2-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Weather and news updates go here"/>
+
+        </LinearLayout>
+
+        <!-- For Container 2-->
+        <!--Horizontally scrolling ListView-->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="#ffffff"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:id="@+id/fragment_container_top">
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <!-- For Container 3-->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="50dp"
+            android:background="#ffffff"
+            android:orientation="horizontal">
+
+            <!-- Ad image -->
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                android:src="@drawable/beverages"
+                android:id="@+id/fragment_container_left"/>
+
+            <!-- vertically scrolling-->
+            <GridView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/back_shadow"
+                android:id="@+id/fragment_container_upper"
+                android:columnWidth="100dp"
+                android:numColumns="2"
+                android:verticalSpacing="5dp"
+                android:horizontalSpacing="5dp"
+                android:stretchMode="columnWidth"
+                android:scrollbars="horizontal"
+                android:gravity="center">
+            </GridView>
+
+        </LinearLayout>
+
+        <!-- For Container 4-->
+
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment_container_lower"
+        android:layout_width="match_parent"
+        android:background="@drawable/tag_background"
+        android:layout_height="0dp"
+        android:layout_weight="2.5"/>
+            <!--tools:layout="@layout/cart_view" />-->
+
+        <RelativeLayout
+            android:background="#FAD25A"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|left"
+                android:background="#FAD25A"
+                android:textColor="#000000"
+                android:layout_marginLeft="10dp"
+                android:text="Cancel"
+                style="?android:attr/borderlessButtonStyle"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginLeft="230dp"
+                android:text="Proceed to pay"
+                android:textColor="#000000"
+                android:background="#FAD25A"
+                android:layout_alignParentTop="true"
+                style="?android:attr/borderlessButtonStyle"/>
+
+        </RelativeLayout>
+
+        <!--Adding a fragment instead of this-->
+        <!-- For Container 5-->
+    </LinearLayout>
+
+    <!--To position it over the two layouts-->
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:background="@drawable/total_amount_text"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_marginTop="97dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical|left"
+            android:text="Your Cart"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:gravity="center_vertical|right"
+            android:text="Total USD 34$"/>
+
+    </RelativeLayout>
+
+</FrameLayout>
+
         <!--<LinearLayout-->
             <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:id="@+id/layout_snacks"-->
-            <!--android:padding="10dp"-->
-            <!--android:background="@drawable/border_selection"-->
-            <!--android:orientation="vertical"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="8"-->
+            <!--android:background="@color/white"-->
             <!--&gt;-->
-            <!--<ImageView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:src="@drawable/beverages"-->
-                <!--android:layout_weight="7"-->
-                <!--/>-->
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:text="Snacks"-->
-                <!--android:textSize="18sp"-->
-                <!--android:gravity="center"-->
-                <!--android:textAlignment="center"-->
-                <!--android:layout_weight="3"-->
+
+            <!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:id="@+id/fragment_container_left"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="5.5"-->
+                <!--android:layout_margin="20dp"-->
                 <!--/>-->
 
-
-
+    <!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:id="@+id/fragment_container_upper"-->
+        <!--android:layout_width="190dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="5.5"-->
+        <!--android:layout_margin="20dp"-->
+        <!--/>-->
         <!--</LinearLayout>-->
-
-    <!--</android.support.v7.widget.CardView>-->
-
-    <!--<android.support.v7.widget.CardView-->
+    <!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:id="@+id/fragment_container_lower"-->
         <!--android:layout_width="match_parent"-->
+        <!--android:background="@drawable/tag_background"-->
         <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="1"-->
+        <!--android:layout_weight="2.5"-->
+        <!--/>-->
 
-        <!--android:layout_marginTop="7dp"-->
-
-        <!--android:layout_marginBottom="7dp"-->
-        <!--android:id="@+id/card_beverages"-->
-        <!--&gt;-->
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:id="@+id/layout_beverages"-->
-            <!--android:padding="10dp"-->
-            <!--android:orientation="vertical"-->
-            <!--&gt;-->
-            <!--<ImageView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:src="@drawable/beverages"-->
-                <!--android:layout_weight="7"-->
-                <!--/>-->
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:text="Beverages"-->
-                <!--android:textSize="18sp"-->
-                <!--android:textAlignment="center"-->
-                <!--android:gravity="center"-->
-                <!--android:layout_weight="3"-->
-                <!--/>-->
-
-
-
-        <!--</LinearLayout>-->
-
-    <!--</android.support.v7.widget.CardView>-->
-
-    <!--<android.support.v7.widget.CardView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="1"-->
-        <!--android:layout_marginTop="7dp"-->
-        <!--android:layout_marginBottom="7dp"-->
-        <!--android:id="@+id/card_cakes"-->
-        <!--&gt;-->
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:id="@+id/layout_cakes"-->
-            <!--android:padding="10dp"-->
-            <!--android:orientation="vertical"-->
-            <!--&gt;-->
-            <!--<ImageView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:src="@drawable/beverages"-->
-                <!--android:layout_weight="7"-->
-                <!--/>-->
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:text="Cakes and Chocolates"-->
-                <!--android:textSize="18sp"-->
-                <!--android:gravity="center"-->
-                <!--android:textAlignment="center"-->
-                <!--android:layout_weight="3"-->
-                <!--/>-->
-
-
-
-        <!--</LinearLayout>-->
-
-    <!--</android.support.v7.widget.CardView>-->
-
-    <!--<android.support.v7.widget.CardView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="1"-->
-
-        <!--android:layout_marginTop="7dp"-->
-        <!--android:layout_marginBottom="14dp"-->
-        <!--android:id="@+id/card_betterforyou"-->
-        <!--&gt;-->
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:id="@+id/layout_betterforyou"-->
-            <!--android:padding="10dp"-->
-            <!--android:orientation="vertical"-->
-            <!--&gt;-->
-            <!--<ImageView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:src="@drawable/beverages"-->
-                <!--android:layout_weight="7"-->
-                <!--/>-->
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:text="Better For You"-->
-                <!--android:textSize="18sp"-->
-                <!--android:textAlignment="center"-->
-                <!--android:gravity="center"-->
-                <!--android:layout_weight="3"-->
-                <!--/>-->
-
-
-
-        <!--</LinearLayout>-->
-
-    <!--</android.support.v7.widget.CardView>-->
 
 
 <!--</LinearLayout>-->
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/fragment_container_upper"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="5.5"
-        />
-        </LinearLayout>
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/fragment_container_lower"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2.5"
-        />
-
-    </LinearLayout>
-
-
-</RelativeLayout>
+<!--</RelativeLayout>-->

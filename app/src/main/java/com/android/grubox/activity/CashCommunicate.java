@@ -238,7 +238,7 @@ public class CashCommunicate extends AppCompatActivity {
             Log.v(getClass().getSimpleName(), "CLEARAMOUNT Response received! ");
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(100);
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -251,7 +251,7 @@ public class CashCommunicate extends AppCompatActivity {
             Log.v(getClass().getSimpleName(), "DISABLEBANKNOTE Response received! ");
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(100);
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -264,7 +264,7 @@ public class CashCommunicate extends AppCompatActivity {
             Log.v(getClass().getSimpleName(), "EARLYRESTART Response received! ");
 
             try {
-                Thread.sleep(5000);
+                Thread.sleep(4000);
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -277,7 +277,7 @@ public class CashCommunicate extends AppCompatActivity {
             Log.v(getClass().getSimpleName(), "ENABLEBANKNOTE Response received! ");
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(100);
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -290,7 +290,7 @@ public class CashCommunicate extends AppCompatActivity {
             Log.v(getClass().getSimpleName(), "RESTARTCASHMACHINE Response received! ");
 
             try {
-                Thread.sleep(5000);
+                Thread.sleep(4000);
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -325,7 +325,7 @@ public class CashCommunicate extends AppCompatActivity {
 //                intent.putExtra("REQUESTTYPE", "SYNCAMOUNT");
 //                startActivityForResult(intent, 2);
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -363,7 +363,7 @@ public class CashCommunicate extends AppCompatActivity {
 
             if(RESPONSE[6] != (byte)0xFF) {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -375,7 +375,7 @@ public class CashCommunicate extends AppCompatActivity {
             }
             else{
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 }catch (Exception e){
                     e.printStackTrace();
                 }

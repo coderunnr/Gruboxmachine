@@ -117,7 +117,7 @@ public class ConsoleActivity extends SerialPortActivity {
 			vendingDatabase.open();
 			productResponse=(ProductResponse) getIntent().getSerializableExtra("response");
 			Log.v("REsponse",productResponse.getColumn()+"-"+productResponse.getRow());
-			byte[] mbuffer=Utility.getBytesOfProduct(vendingDatabase.getRowandCol(productResponse.getId()));
+			byte[] mbuffer=Utility.getBytesOfProduct(vendingDatabase.getRowandCol(productResponse.getPId()));
 			vendingDatabase.close();
 			//byte[] mbuffer=new byte[]{0x01,0x09,0x03,0x01,0x09,0x00,0x00,0x00,0x00,0x00,0x01,0x03}	;
 			//	byte[] mbuffer=new byte[]{0x01,0x01,0x00,0x01};

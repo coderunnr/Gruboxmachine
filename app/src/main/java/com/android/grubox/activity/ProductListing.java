@@ -1,5 +1,6 @@
 package com.android.grubox.activity;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.gesture.Gesture;
 import android.gesture.GestureLibraries;
@@ -43,6 +44,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Scanner;
 
 import static android.R.attr.typeface;
 
@@ -105,6 +107,8 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
         final ViewGroup mContainer = (ViewGroup) findViewById(android.R.id.content).getRootView();
         final Typeface mFont = Typeface.createFromAsset(getAssets(), "Quicksand-Regular.otf");
         Parameters.setAppFont(mContainer, mFont);
+
+
 
         setUpViews();
         if (findViewById(R.id.fragment_container_upper) != null) {
@@ -220,6 +224,38 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container_left, fragment).commit();
         }
+
+
+        View proceed = findViewById(R.id.proceed);
+        proceed.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        TextView cart_amount = (TextView) findViewById(R.id.cart_amount);
+                        Scanner in = new Scanner(cart_amount.getText().toString()).useDelimiter("[^0-9]+");
+                        int intamount = in.nextInt();
+
+                        if(intamount  >0 ) {
+                            Intent toproceed = new Intent(ProductListing.this, LoyaltyandPayments.class);
+                            startActivity(toproceed);
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(),"Please add a product to cart before proceeding!",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+        );
+
+        View cancel = findViewById(R.id.cancel);
+        cancel.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                }
+        );
+
 
 
         mp = MediaPlayer.create(ProductListing.this, R.raw.queenbreakfree);
@@ -382,8 +418,8 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
         }
         else {
             cartFragment.refreshCart();
-            updateTotal();
         }
+        updateTotal();
     }
 
 

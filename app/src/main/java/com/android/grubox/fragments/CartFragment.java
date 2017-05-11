@@ -16,6 +16,7 @@ import com.android.grubox.R;
 import com.android.grubox.activity.CashCommunicate;
 import com.android.grubox.activity.ConsoleActivity;
 import com.android.grubox.activity.GrucardActivity;
+import com.android.grubox.activity.LoyaltyandPayments;
 import com.android.grubox.activity.PayWithCash;
 import com.android.grubox.activity.PayWithPaytm;
 import com.android.grubox.activity.ProductListing;
@@ -118,7 +119,13 @@ public class CartFragment extends Fragment {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        mAdapter = new CartAdapter((ProductListing)getActivity(),productModels,getContext(),this);
+
+//        if(getActivity() instanceof ProductListing) {
+            mAdapter = new CartAdapter((ProductListing) getActivity(), productModels, getContext(), this);
+//        }
+//        else if(getActivity() instanceof LoyaltyandPayments){
+//            mAdapter = new CartAdapter(getActivity(), productModels, getContext(), this);
+//        }
         mRecyclerView.setAdapter(mAdapter);
         updateTotal();
     }

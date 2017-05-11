@@ -1,6 +1,7 @@
 package com.android.grubox.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.grubox.Parameters;
 import com.android.grubox.R;
 import com.android.grubox.activity.ProductListing;
 import com.android.grubox.models.ProductResponse;
@@ -161,6 +163,11 @@ public class ProductMainPageAdapter extends RecyclerView.Adapter<ProductMainPage
                     .inflate(R.layout.recycleitem_product_list, parent, false);
 
         ViewHolder vh = new ViewHolder(v, this);
+
+        final ViewGroup mContainer = (ViewGroup) v.findViewById(android.R.id.content).getRootView();
+        final Typeface mFont = Typeface.createFromAsset(context.getAssets(), "Quicksand-Regular.otf");
+        Parameters.setAppFont(mContainer, mFont);
+
         return vh;
     }
 
@@ -208,13 +215,13 @@ public class ProductMainPageAdapter extends RecyclerView.Adapter<ProductMainPage
             holder.fname.setText(productModels.get(position).getF_name());
             holder.image.setImageBitmap(productModels.get(position).getImage());
             holder.price.setText(productModels.get(position).getMrp() + "");
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                holder.addtoCart.setBackgroundResource(R.drawable.add);
-            }
-            else
-            {
-                holder.addtoCart.setBackgroundResource(R.drawable.add);
-            }
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//                holder.addtoCart.setBackgroundResource(R.drawable.add);
+//            }
+//            else
+//            {
+//                holder.addtoCart.setBackgroundResource(R.drawable.add);
+//            }
 //            YoYo.with(Techniques.ZoomIn)
 //                    .duration(4000)
 //                    .playOn(holder.image);
@@ -222,7 +229,7 @@ public class ProductMainPageAdapter extends RecyclerView.Adapter<ProductMainPage
 //                    .delay(4000)
 //                    .duration(4000)
 //                    .playOn(holder.image);
-          startAnimation(holder.image);
+//          startAnimation(holder.image);
 
 
         }

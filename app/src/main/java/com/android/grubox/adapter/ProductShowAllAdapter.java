@@ -1,6 +1,7 @@
 package com.android.grubox.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.grubox.Parameters;
 import com.android.grubox.R;
 import com.android.grubox.activity.ProductListing;
 import com.android.grubox.models.ProductResponse;
@@ -144,6 +146,11 @@ public class ProductShowAllAdapter extends RecyclerView.Adapter<ProductShowAllAd
                 .inflate(R.layout.recycleitem_product_list, parent, false);
 
         ViewHolder vh = new ViewHolder(v, this);
+
+        final ViewGroup mContainer = (ViewGroup) v.getRootView();
+        final Typeface mFont = Typeface.createFromAsset(context.getAssets(), "Quicksand-Regular.otf");
+        Parameters.setAppFont(mContainer, mFont);
+
         return vh;
     }
 

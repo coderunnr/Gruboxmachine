@@ -49,10 +49,14 @@
         </activity>
         <activity android:name=".activity.GrucardActivity" />
         <activity android:name=".activity.PayWithCash" />
-        <activity android:name=".activity.PayWithPaytm"></activity>
+        <activity android:name=".activity.PayWithPaytm" />
         <activity android:name=".activity.TestMachine" />
         <activity android:name=".activity.TestMachineMain" />
-        <activity android:name=".activity.CashCommunicate"></activity>
+        <activity android:name=".activity.CashCommunicate" />
+        <activity
+            android:name=".activity.LoyaltyandPayments"
+            android:label="@string/title_activity_loyaltyand_payments"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

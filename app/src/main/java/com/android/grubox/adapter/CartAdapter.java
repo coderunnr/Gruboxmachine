@@ -1,5 +1,6 @@
 package com.android.grubox.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -105,6 +106,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 productModels.get(position).setQuantity_cart(productModels.get(position).getQuantity_cart()+1);
                 holder.quantity.setText(productModels.get(position).getQuantity_cart()+"");
                 cartFragment.updateTotal();
+                if(context instanceof ProductListing){
+                    ((ProductListing)context).updateTotal();
+                }
             }
         });
         holder.minus.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +126,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                     productModels.get(position).setQuantity_cart(productModels.get(position).getQuantity_cart() - 1);
                     holder.quantity.setText(productModels.get(position).getQuantity_cart() + "");
                     cartFragment.updateTotal();
+                    if(context instanceof ProductListing){
+                        ((ProductListing)context).updateTotal();
+                    }
                 }
             }
         });
@@ -135,6 +142,23 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         return productModels.size();
 
     }
+
+//    public void updateTotal()
+//    {
+//        int total=0;
+//        VendingDatabase vendingDatabase=new VendingDatabase(this);
+//        try {
+//            vendingDatabase.open();
+//            total=vendingDatabase.getTotalSum();
+//            vendingDatabase.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        TextView cart_amount = (TextView) findViewById(R.id.cart_amount);
+//        cart_amount.setText("Total: "+getString(R.string.Rs) +total);
+//
+//    }
 }
 
 

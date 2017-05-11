@@ -1,10 +1,12 @@
 package com.android.grubox.activity;
 
+import android.content.res.AssetManager;
 import android.gesture.Gesture;
 import android.gesture.GestureLibraries;
 import android.gesture.GestureLibrary;
 import android.gesture.GestureOverlayView;
 import android.gesture.Prediction;
+import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -18,10 +20,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.grubox.Parameters;
 import com.android.grubox.R;
 import com.android.grubox.databaseutils.VendingDatabase;
 import com.android.grubox.fragments.CarouselMain;
@@ -37,6 +42,9 @@ import com.android.grubox.models.TagModel;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Locale;
+
+import static android.R.attr.typeface;
 
 public class ProductListing extends AppCompatActivity implements View.OnClickListener {
 
@@ -86,6 +94,17 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
 //       wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
 //                "MyWakelockTag");
 //        wakeLock.acquire();
+
+//        AssetManager am = getApplicationContext().getAssets();
+//
+//        typeface = Typeface.createFromAsset(am,
+//                String.format(Locale.US, "fonts/%s", "Quicksand-Regular.otf"));
+//
+//        setTypeface(typeface);
+
+        final ViewGroup mContainer = (ViewGroup) findViewById(android.R.id.content).getRootView();
+        final Typeface mFont = Typeface.createFromAsset(getAssets(), "Quicksand-Regular.otf");
+        Parameters.setAppFont(mContainer, mFont);
 
         setUpViews();
         if (findViewById(R.id.fragment_container_upper) != null) {
@@ -358,13 +377,13 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
         } catch (SQLException e) {
             e.printStackTrace();
         }
-if(emptyCart)
-{
-    emptyCart=false;
-}
+        if(emptyCart){
+            emptyCart=false;
+        }
         else {
-    cartFragment.refreshCart();
-}
+            cartFragment.refreshCart();
+            updateTotal();
+        }
     }
 
 
@@ -382,6 +401,7 @@ if(emptyCart)
             e.printStackTrace();
         }
         cartFragment.refreshCart();
+        updateTotal();
     }
 
 
@@ -440,6 +460,22 @@ if(emptyCart)
         super.onDestroy();
     }
 
+    public void updateTotal()
+    {
+        int total=0;
+        VendingDatabase vendingDatabase=new VendingDatabase(this);
+        try {
+            vendingDatabase.open();
+            total=vendingDatabase.getTotalSum();
+            vendingDatabase.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        TextView cart_amount = (TextView) findViewById(R.id.cart_amount);
+        cart_amount.setText("Total: "+getString(R.string.Rs) +total);
+
+    }
 //    @Override
 //    public void onGesturePerformed(GestureOverlayView gestureOverlayView, Gesture gesture) {
 //        ArrayList<Prediction> predictions = mLibrary.recognize(gesture);

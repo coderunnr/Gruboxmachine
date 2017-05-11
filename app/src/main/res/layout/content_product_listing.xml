@@ -48,6 +48,7 @@
 <FrameLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#1ADAEA"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -59,6 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:id="@+id/rootview"
         android:background="@drawable/tag_background"
         android:layout_margin="35px"
         tools:context="com.example.android.grubox_ui.MainActivity">
@@ -68,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
-            android:background="#FFD75C"
+            android:background="@drawable/top_rounded"
             android:orientation="vertical">
 
             <!--Container 1, item 1-->
@@ -86,6 +88,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
+                        android:fontFamily="assets/fonts/Quicksand-Regular.otf"
                         android:text="GRUBOX"/>
 
                     <TextView
@@ -93,6 +96,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:text="12:30 PM"
+                        android:fontFamily="assets/fonts/Quicksand-Regular.otf"
                         android:textStyle="bold"/>
 
                 </RelativeLayout>
@@ -197,7 +201,7 @@
             <!--tools:layout="@layout/cart_view" />-->
 
         <RelativeLayout
-            android:background="@drawable/lower_corners"
+            android:background="@drawable/bottom_rounded"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
@@ -206,7 +210,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|left"
-                android:background="#FAD25A"
+                android:background="#FFD75C"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp"
                 android:text="Cancel"
@@ -216,10 +220,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|right"
-                android:layout_marginLeft="630dp"
+                android:layout_marginLeft="500dp"
                 android:text="Proceed to pay"
                 android:textColor="#000000"
-                android:background="#FAD25A"
+                android:background="#FFD75C"
                 android:layout_alignParentTop="true"
                 style="?android:attr/borderlessButtonStyle"/>
 
@@ -235,23 +239,25 @@
         android:background="@drawable/total_amount_text"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="850dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="30dp"
             android:gravity="center_vertical|left"
-            android:textSize="40dp"
+            android:textSize="30dp"
             android:text="Your Cart"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            android:textSize="40dp"
+            android:textSize="30dp"
             android:gravity="center_vertical|right"
-            android:text="Total USD 34$"/>
+            android:text="Total Rs 0"
+            android:id="@+id/cart_amount"/>
 
     </RelativeLayout>
 

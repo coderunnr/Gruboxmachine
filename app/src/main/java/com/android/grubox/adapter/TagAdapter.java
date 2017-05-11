@@ -85,7 +85,7 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
             }
         });
 
-        animateit(holder.v);
+//        animateit(holder.v);
 
     }
 

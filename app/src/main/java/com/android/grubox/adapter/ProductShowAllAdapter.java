@@ -195,7 +195,7 @@ public class ProductShowAllAdapter extends RecyclerView.Adapter<ProductShowAllAd
 //                holder.addtoCart.setBackgroundResource(R.drawable.add);
 //            }
 
-            startAnimation(holder.image);
+//            startAnimation(holder.image);
 
 
 

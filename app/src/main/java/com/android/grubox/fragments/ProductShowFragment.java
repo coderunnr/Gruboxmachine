@@ -109,7 +109,7 @@ public class ProductShowFragment extends Fragment implements GestureOverlayView.
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        mLayoutManager = new GridLayoutManager(getContext(),5);
+        mLayoutManager = new GridLayoutManager(getContext(),2);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)

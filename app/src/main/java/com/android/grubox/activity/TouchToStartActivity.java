@@ -2,6 +2,7 @@ package com.android.grubox.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 
 import com.android.grubox.R;
 import com.android.grubox.adapter.TouchToStartGrid;
+import com.android.grubox.fragments.CarouselMain;
+import com.android.grubox.fragments.CarouselOffers;
 
 /**
  * Created by Utkarsh Bindal on 12/05/2017.
@@ -28,6 +31,19 @@ public class TouchToStartActivity extends AppCompatActivity {
                 "#masala", "#kurkure", "#CocaCola", "#healthy", "#Snacks", "#Mango", "#Chips", "#Chocolate", "#Fanta"
 
         };
+
+        if (findViewById(R.id.MainCarousel) != null) {
+
+            if (savedInstanceState != null) {
+                return;
+            }
+
+            Fragment fragment;
+            fragment=new CarouselMain();
+
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.MainCarousel, fragment).commit();
+        }
 
         GridView first_grid;
         TouchToStartGrid adapter = new TouchToStartGrid(TouchToStartActivity.this, web);

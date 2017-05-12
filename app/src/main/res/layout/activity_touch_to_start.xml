@@ -83,13 +83,18 @@
 
         <!-- For Container 2-->
         <!-- Need to add image-->
-        <ImageView
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="300dp"-->
+            <!--android:background="#ffffff"-->
+            <!--android:src="@mipmap/feeling_hungry"-->
+            <!--/>-->
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/MainCarousel"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="#ffffff"
-            android:src="@mipmap/feeling_hungry"
+            android:layout_height="800dp"
+            android:layout_margin="20dp"
             />
-
         <!-- For Container 3-->
         <GridView
             android:layout_width="match_parent"

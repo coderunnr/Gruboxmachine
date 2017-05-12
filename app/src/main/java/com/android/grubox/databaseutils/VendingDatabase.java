@@ -417,6 +417,13 @@ public class VendingDatabase {
 
      }
 
+     public void DeleteCart() {
+//         ourhelper=new Dbhelper(ourcontext);
+//         ourdatabase=ourhelper.getWritableDatabase();
+         ourdatabase.execSQL("DROP TABLE IF EXISTS "+DATABASE_TABLE);
+
+     }
+
      public class DbBitmapUtility {
 
          // convert from bitmap to byte array

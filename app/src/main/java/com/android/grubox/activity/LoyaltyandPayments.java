@@ -51,27 +51,17 @@ public class LoyaltyandPayments extends AppCompatActivity {
         });
 
 
-//        if (findViewById(R.id.cartfragment_top) != null) {
-//
-//            if (savedInstanceState != null) {
-//                return;
-//            }
-//
-//            VendingDatabase vendingDatabase=new VendingDatabase(LoyaltyandPayments.this);
-//            int size=0;
-//            try {
-//                vendingDatabase.open();
-//                size= vendingDatabase.getCartData().size();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//            Fragment fragment;
-//
-//            fragment = new CartFragment();
-//
-//            getSupportFragmentManager().beginTransaction()
-//                    .add(R.id.cartfragment_top, fragment).commit();
-//        }
+        if (findViewById(R.id.cartfragment_top) != null) {
+
+            if (savedInstanceState != null) {
+                return;
+            }
+            Fragment fragment;
+            fragment = new CartFragment();
+
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.cartfragment_top, fragment).commit();
+        }
 
         final RadioButton Paytm = (RadioButton) findViewById(R.id.Paytm);
         final RadioButton Cash = (RadioButton) findViewById(R.id.Cash);

@@ -251,7 +251,16 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        try {
+                            VendingDatabase vendingDatabase=new VendingDatabase(ProductListing.this);
+                            vendingDatabase.open();
+                            vendingDatabase.DeleteCart();
+                            vendingDatabase.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
                         finish();
+
                     }
                 }
         );

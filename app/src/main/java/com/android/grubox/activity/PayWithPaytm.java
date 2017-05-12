@@ -36,9 +36,9 @@ public class PayWithPaytm extends AppCompatActivity {
 
 
     @Override
-    protected void OnDestroy(){
+    protected void onDestroy(){
         super.onDestroy();
-
+        paywithPaytmStatusCheck.cancel(true);
     }
 
     @Override

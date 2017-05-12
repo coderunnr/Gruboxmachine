@@ -57,9 +57,9 @@ public class CartFragment extends Fragment {
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        if(getActivity() instanceof LoyaltyandPayments) {
-            total_cart = (TextView) getActivity().findViewById(R.id.staticcart_amount);
-        }
+//        if(getActivity() instanceof LoyaltyandPayments) {
+//            total_cart = (TextView) v.findViewById(R.id.cart_amount);
+//        }
         // specify an adapter (see also next example)
         refreshCart();
        // mAdapter = new CartAdapter((ProductListing)getActivity(),productModels,getContext());
@@ -128,25 +128,27 @@ public class CartFragment extends Fragment {
         }
         mRecyclerView.setAdapter(mAdapter);
         updateTotal();
-//        ((ProductListing) getActivity()).updateTotal();
     }
 
     public void updateTotal()
     {
-
+        VendingDatabase vendingDatabase=new VendingDatabase(getContext());
+        try {
+            vendingDatabase.open();
+            total=vendingDatabase.getTotalSum();
+            vendingDatabase.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+<<<<<<< HEAD
+//        if(getActivity() instanceof LoyaltyandPayments) {
+//            total_cart.setText("Total: " + getString(R.string.Rs) + total);
+//        }
+        ((ProductListing) getActivity()).updateTotal();
+=======
         if(getActivity() instanceof LoyaltyandPayments) {
-            VendingDatabase vendingDatabase=new VendingDatabase(getContext());
-            try {
-                vendingDatabase.open();
-                total=vendingDatabase.getTotalSum();
-                vendingDatabase.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
             total_cart.setText("Total: " + getString(R.string.Rs) + total);
         }
-        else {
-            ((ProductListing) getActivity()).updateTotal();
-        }
+>>>>>>> 82992a37cde0d9135563fe97cafb4c287d16595d
     }
 }

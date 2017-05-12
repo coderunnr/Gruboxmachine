@@ -19,6 +19,9 @@ import com.android.grubox.models.ProductResponse;
 import java.sql.SQLException;
 import java.util.List;
 
+import static com.android.grubox.R.id.add__quantity_cart;
+import static com.android.grubox.R.id.minus_quantity_cart;
+
 /**
  * Created by root on 13/7/16.
  */
@@ -74,6 +77,8 @@ public class StaticCartAdapter extends RecyclerView.Adapter<StaticCartAdapter.Vi
 
         v= LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recycleitem_cart_list, parent, false);
+        v.findViewById(minus_quantity_cart).setEnabled(false);
+        v.findViewById(add__quantity_cart).setEnabled(false);
 
         ViewHolder vh = new ViewHolder(v, this);
         return vh;

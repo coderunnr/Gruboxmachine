@@ -47,6 +47,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.TouchToStartActivity" />
         <activity android:name=".activity.GrucardActivity" />
         <activity android:name=".activity.PayWithCash" />
         <activity android:name=".activity.PayWithPaytm" />

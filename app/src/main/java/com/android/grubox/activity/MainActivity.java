@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            Intent intent=new Intent(MainActivity.this,ProductListing.class);
+            Intent intent=new Intent(MainActivity.this,TouchToStartActivity.class);
             startActivity(intent);
 
         }

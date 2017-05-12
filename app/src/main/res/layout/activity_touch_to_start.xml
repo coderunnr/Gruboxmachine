@@ -92,7 +92,7 @@
         <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/MainCarousel"
             android:layout_width="match_parent"
-            android:layout_height="800dp"
+            android:layout_height="200dp"
             android:layout_margin="20dp"
             />
         <!-- For Container 3-->

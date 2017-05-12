@@ -140,7 +140,8 @@ public class CartFragment extends Fragment {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        total_cart.setText("Total: "+getString(R.string.Rs)+total);
-
+        if(getActivity() instanceof LoyaltyandPayments) {
+            total_cart.setText("Total: " + getString(R.string.Rs) + total);
+        }
     }
 }

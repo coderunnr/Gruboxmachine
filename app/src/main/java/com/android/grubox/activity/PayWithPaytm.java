@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.grubox.R;
 import com.android.grubox.connectionutils.Connection;
@@ -32,6 +33,13 @@ public class PayWithPaytm extends AppCompatActivity {
     JSONObject jsonObject1;
     PaywithPaytmStatusCheck paywithPaytmStatusCheck;
     String order_id;
+
+
+    @Override
+    protected void OnDestroy(){
+        super.onDestroy();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,17 +130,18 @@ String url;
                 paywithPaytmStatusCheck=new PaywithPaytmStatusCheck("http://104.199.176.31/Project/api/Manager/GetPaymentStatus/",jsonObject1);
                 paywithPaytmStatusCheck.execute();
 
-//                new CountDownTimer(60000, 10000) {
-//
-//                    public void onTick(long millisUntilFinished) {
-//
-//                    }
-//
-//                    public void onFinish() {
-//                        paywithPaytmStatusCheck.cancel(true);
-//                    }
-//                }.start();
+                new CountDownTimer(60000, 10000) {
 
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    public void onFinish() {
+                        paywithPaytmStatusCheck.cancel(true);
+                        Toast.makeText(getApplicationContext(),"SORRY! TIMED OUT!", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                }.start();
 
 
             } catch (JSONException e) {
@@ -166,9 +175,12 @@ String url;
         protected void onPostExecute(String s) {
             Log.v("Paytn",s);
             try {
-                JSONObject jsonObject=new JSONObject(s);
-                String status=jsonObject.getString("status");
+                JSONObject jsonObject = new JSONObject(s);
+                String status = jsonObject.getString("status");
 
+                if (isCancelled()){
+                   return;
+                }
                 if(status.contentEquals("PENDING"))
                 {
 //                    final Handler handler = new Handler();
@@ -178,12 +190,23 @@ String url;
 //                            new PaywithPaytmStatusCheck("http://192.168.0.103:8000/story/api/GetPaymentStatus/",jsonObject1).execute();
 //                        }
 //                    }, 1000);
-
+                    try {
+                        Thread.sleep(1000);
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
                     new PaywithPaytmStatusCheck("http://104.199.176.31/Project/api/Manager/GetPaymentStatus/",jsonObject1).execute();
 
                 }
                 else if (status.contentEquals("FAILURE"))
                 {
+                    try {
+                        Thread.sleep(1000);
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
 //                    final Handler handler = new Handler();
 //                    handler.postDelayed(new Runnable() {
 //                        @Override

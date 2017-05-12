@@ -57,9 +57,9 @@ public class CartFragment extends Fragment {
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        if(getActivity() instanceof LoyaltyandPayments) {
-            total_cart = (TextView) v.findViewById(R.id.cart_amount);
-        }
+//        if(getActivity() instanceof LoyaltyandPayments) {
+//            total_cart = (TextView) v.findViewById(R.id.cart_amount);
+//        }
         // specify an adapter (see also next example)
         refreshCart();
        // mAdapter = new CartAdapter((ProductListing)getActivity(),productModels,getContext());
@@ -140,7 +140,9 @@ public class CartFragment extends Fragment {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        total_cart.setText("Total: "+getString(R.string.Rs)+total);
-
+//        if(getActivity() instanceof LoyaltyandPayments) {
+//            total_cart.setText("Total: " + getString(R.string.Rs) + total);
+//        }
+        ((ProductListing) getActivity()).updateTotal();
     }
 }

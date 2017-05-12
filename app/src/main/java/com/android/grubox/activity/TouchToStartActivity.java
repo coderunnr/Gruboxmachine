@@ -24,16 +24,6 @@ public class TouchToStartActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_touch_to_start);
 
-//        GridView gridview = (GridView) findViewById(R.id.grid_for_buttons);
-//        gridview.setAdapter(new myAdapter(this));
-//
-//        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            public void onItemClick(AdapterView<?> parent, View v,
-//                                    int position, long id) {
-//                Toast.makeText(TouchToStartActivity.this, "" + position,
-//                        Toast.LENGTH_SHORT).show();
-//            }
-//        });
         final String[] web = {
                 "#masala", "#kurkure", "#CocaCola", "#healthy", "#Snacks", "#Mango", "#Chips", "#Chocolate", "#Fanta"
 

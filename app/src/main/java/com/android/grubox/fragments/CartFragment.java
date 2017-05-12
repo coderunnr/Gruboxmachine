@@ -22,6 +22,7 @@ import com.android.grubox.activity.PayWithPaytm;
 import com.android.grubox.activity.ProductListing;
 import com.android.grubox.activity.TestMachineMain;
 import com.android.grubox.adapter.CartAdapter;
+import com.android.grubox.adapter.StaticCartAdapter;
 import com.android.grubox.databaseutils.VendingDatabase;
 import com.android.grubox.models.ProductResponse;
 
@@ -56,58 +57,57 @@ public class CartFragment extends Fragment {
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        total_cart=(TextView)v.findViewById(R.id.total_amount_cart);
+        if(getActivity() instanceof LoyaltyandPayments) {
+            total_cart = (TextView) v.findViewById(R.id.cart_amount);
+        }
         // specify an adapter (see also next example)
         refreshCart();
        // mAdapter = new CartAdapter((ProductListing)getActivity(),productModels,getContext());
        // mRecyclerView.setAdapter(mAdapter);
-        v.findViewById(R.id.cart_pay_with_cash).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SharedPreferences sp = getActivity().getSharedPreferences("grubox_port", getActivity().MODE_PRIVATE);
-                sp.edit().putInt("called",0).apply();
-                Intent intent=new Intent(getContext(), PayWithCash.class);
-                startActivity(intent);
-//                Intent intent=new Intent(getContext(), TestMachineMain.class);
-//                startActivity(intent);
-
-            }
-        });
-        v.findViewById(R.id.cart_pay_with_paytm).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+//        v.findViewById(R.id.cart_pay_with_cash).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
 //                SharedPreferences sp = getActivity().getSharedPreferences("grubox_port", getActivity().MODE_PRIVATE);
 //                sp.edit().putInt("called",0).apply();
 //                Intent intent=new Intent(getContext(), PayWithCash.class);
 //                startActivity(intent);
-                Intent intent=new Intent(getContext(), PayWithPaytm.class);
-                intent.putExtra("money",total);
-                startActivity(intent);
-
-            }
-        });
-
-        v.findViewById(R.id.cart_pay_with_grucard).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                SharedPreferences sp = getActivity().getSharedPreferences("grubox_port", getActivity().MODE_PRIVATE);
-//                sp.edit().putInt("called",0).apply();
-
+////                Intent intent=new Intent(getContext(), TestMachineMain.class);
+////                startActivity(intent);
+//
+//            }
+//        });
+//        v.findViewById(R.id.cart_pay_with_paytm).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                SharedPreferences sp = getActivity().getSharedPreferences("grubox_port", getActivity().MODE_PRIVATE);
+////                sp.edit().putInt("called",0).apply();
+////                Intent intent=new Intent(getContext(), PayWithCash.class);
+////                startActivity(intent);
 //                Intent intent=new Intent(getContext(), PayWithPaytm.class);
-                Intent intent=new Intent(getContext(), CashCommunicate.class);
-                intent.putExtra("amount",total);
-                startActivity(intent);
-
-
-            }
-        });
+//                intent.putExtra("money",total);
+//                startActivity(intent);
+//
+//            }
+//        });
+//
+//        v.findViewById(R.id.cart_pay_with_grucard).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                SharedPreferences sp = getActivity().getSharedPreferences("grubox_port", getActivity().MODE_PRIVATE);
+////                sp.edit().putInt("called",0).apply();
+//
+////                Intent intent=new Intent(getContext(), PayWithPaytm.class);
+//                Intent intent=new Intent(getContext(), CashCommunicate.class);
+//                intent.putExtra("amount",total);
+//                startActivity(intent);
+//
+//
+//            }
+//        });
 //        Intent intent=new Intent(getContext(), PayWithPaytm.class);
 //        startActivity(intent);
         return v;
-
-
     }
-
 
 
     public void refreshCart() {
@@ -120,12 +120,12 @@ public class CartFragment extends Fragment {
             e.printStackTrace();
         }
 
-//        if(getActivity() instanceof ProductListing) {
+        if(getActivity() instanceof ProductListing) {
             mAdapter = new CartAdapter((ProductListing) getActivity(), productModels, getContext(), this);
-//        }
-//        else if(getActivity() instanceof LoyaltyandPayments){
-//            mAdapter = new CartAdapter(getActivity(), productModels, getContext(), this);
-//        }
+        }
+        else if(getActivity() instanceof LoyaltyandPayments){
+            mAdapter = new StaticCartAdapter((LoyaltyandPayments) getActivity(), productModels, getContext(), this);
+        }
         mRecyclerView.setAdapter(mAdapter);
         updateTotal();
     }

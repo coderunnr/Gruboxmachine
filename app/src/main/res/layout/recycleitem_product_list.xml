@@ -63,9 +63,10 @@
             <TextView
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
                 android:textColor="#000000"
                 android:padding="7dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="12dp"
                 android:textSize="12dp"
                 android:background="@drawable/food_item_price"
                 android:text= "USD 99"
@@ -74,7 +75,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="24dp"
                 android:background="@drawable/food_item_button"
                 android:textSize="12dp"
                 android:text="View Details"

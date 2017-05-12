@@ -249,6 +249,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:gravity="center_vertical|left"
+            android:paddingTop="20dp"
             android:textSize="30dp"
             android:text="Your Cart"/>
 
@@ -257,6 +258,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:textSize="30dp"
+            android:paddingTop="20dp"
             android:gravity="center_vertical|right"
             android:text="Total Rs 0"
             android:id="@+id/cart_amount"/>

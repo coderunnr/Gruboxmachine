@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--Outer Container-->
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1ADAEA"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <!-- All content inside-->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="35px"
+        tools:context="com.example.android.grubox_ui.MainActivity">
+
+        <!--For Container 1-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:background="#FFD75C"
+            android:orientation="vertical">
+
+            <!--Container 1, item 1-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="GRUBOX"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="12:30 PM"
+                        android:textStyle="bold"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="your smart cafe"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="12 Maarch 2017, Monday"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <!-- Container 1, item 2-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Weather and news updates go here"/>
+
+        </LinearLayout>
+
+        <!-- For Container 2-->
+        <!-- Need to add image-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="#ffffff"
+            android:src="@mipmap/feeling_hungry"
+            />
+
+        <!-- For Container 3-->
+        <GridView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#ffffff"
+            android:id="@+id/grid_for_buttons"
+            android:columnWidth="100dp"
+            android:numColumns="4"
+            android:verticalSpacing="5dp"
+            android:horizontalSpacing="5dp"
+            android:stretchMode="columnWidth"
+            android:scrollbars="horizontal"
+            android:gravity="center">
+        </GridView>
+
+        <!-- For Container 4-->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFD75C"
+            android:id="@+id/button_start"
+            android:text="Touch to start"/>
+
+    </LinearLayout>
+
+</FrameLayout>

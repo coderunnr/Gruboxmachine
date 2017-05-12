@@ -7,6 +7,12 @@
     android:background="#1ADAEA"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="35px"
+        android:layout_gravity="left|bottom">
+
 
     <!-- All content inside-->
     <LinearLayout
@@ -15,13 +21,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_margin="35px"
+        android:background="#ffffff"
+        android:paddingBottom="0dp"
         tools:context="com.example.android.grubox_ui.MainActivity">
 
         <!--For Container 1-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="90dp"
             android:padding="15dp"
             android:background="#FFD75C"
             android:orientation="vertical">
@@ -92,7 +99,7 @@
         <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/MainCarousel"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="250dp"
             android:layout_margin="20dp"
             />
         <!-- For Container 3-->
@@ -101,8 +108,9 @@
             android:layout_height="100dp"
             android:background="#ffffff"
             android:id="@+id/grid_for_buttons"
-            android:columnWidth="100dp"
+            android:columnWidth="200dp"
             android:numColumns="4"
+            android:layout_marginBottom="15dp"
             android:verticalSpacing="5dp"
             android:horizontalSpacing="5dp"
             android:stretchMode="columnWidth"
@@ -110,14 +118,17 @@
             android:gravity="center">
         </GridView>
 
-        <!-- For Container 4-->
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFD75C"
-            android:id="@+id/button_start"
-            android:text="Touch to start"/>
-
     </LinearLayout>
+
+    <!-- For Container 4-->
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFD75C"
+        android:id="@+id/button_start"
+        android:text="Touch to start"/>
+
+    </RelativeLayout>
 
 </FrameLayout>

@@ -24,12 +24,14 @@ public class VendingDatabase {
 
     public static final String KEY_ROWID="_id";
     public static final String KEY_SUBID="product_id";
+    public static final String KEY_SID="stock_id";
     public static final String KEY_NAME="product_name";
     public static final String KEY_UNITS="product_units";
     public static final String KEY_PRICE="price";
      public static final String KEY_CARTIMAGE="image";
 
      public static final String KEY_PID="product_id";
+     public static final String KEY_SID="stock_id";
      public static final String KEY_IMAGE="image";
      public static final String KEY_BNAME="b_name";
      public static final String KEY_FNAME="f_name";
@@ -155,6 +157,7 @@ public class VendingDatabase {
 
                  ContentValues cv = new ContentValues();
                  cv.put(KEY_PID, productResponse.getPId());
+                 cv.put(KEY_SID, productResponse.getId());
                  cv.put(KEY_BNAME, productResponse.getB_name());
                  cv.put(KEY_CNAME, productResponse.getC_name());
                  cv.put(KEY_FNAME, productResponse.getF_name());
@@ -178,11 +181,12 @@ public class VendingDatabase {
 
      public List<ProductResponse> getProductsList()
      {
-         String[] columns=new String[] {KEY_ROWID,KEY_CATID,KEY_COL,KEY_ROW,KEY_MRP,KEY_PERCEPTAG,KEY_BNAME,KEY_CATTAG,KEY_CNAME,KEY_FNAME,KEY_IMAGE,KEY_PID,KEY_UNITS};
+         String[] columns=new String[] {KEY_ROWID,KEY_CATID,KEY_SID,KEY_COL,KEY_ROW,KEY_MRP,KEY_PERCEPTAG,KEY_BNAME,KEY_CATTAG,KEY_CNAME,KEY_FNAME,KEY_IMAGE,KEY_PID,KEY_UNITS};
 
          Cursor c=ourdatabase.query(DATABASE_TABLEPRODUCT, columns, null, null, null, null, null);
 
-         int id=c.getColumnIndex(KEY_PID);
+         int pid=c.getColumnIndex(KEY_PID);
+         int id=c.getColumnIndex(KEY_SID);
          int row_id=c.getColumnIndex(KEY_ROWID);
          int image=c.getColumnIndex(KEY_IMAGE);
          int b_name=c.getColumnIndex(KEY_BNAME);
@@ -211,7 +215,8 @@ public class VendingDatabase {
              productResponse.setB_name(c.getString(b_name));
              productResponse.setC_name(c.getString(c_name));
              productResponse.setF_name(c.getString(f_name));
-             productResponse.setPId(c.getInt(id));
+             productResponse.setPId(c.getInt(pid));
+             productResponse.setId(c.getInt(id));
              productResponse.setPercepTag(c.getString(percepTag));
              productResponse.setRow(c.getInt(row));
              productResponse.setRow_id(c.getInt(row_id));
@@ -227,12 +232,13 @@ public class VendingDatabase {
 
      public List<ProductResponse> getProductsList(int cat_id)
      {
-         String[] columns=new String[] {KEY_ROWID,KEY_CATID,KEY_COL,KEY_ROW,KEY_MRP,KEY_PERCEPTAG,KEY_BNAME,KEY_CATTAG,KEY_CNAME,KEY_FNAME,KEY_IMAGE,KEY_PID,KEY_UNITS};
+         String[] columns=new String[] {KEY_ROWID,KEY_CATID,KEY_SID,KEY_COL,KEY_ROW,KEY_MRP,KEY_PERCEPTAG,KEY_BNAME,KEY_CATTAG,KEY_CNAME,KEY_FNAME,KEY_IMAGE,KEY_PID,KEY_UNITS};
 
         // Cursor c=ourdatabase.query(DATABASE_TABLEPRODUCT, columns, null, null, null, null, null);
          Cursor c=ourdatabase.query(DATABASE_TABLEPRODUCT,columns,KEY_CATID+"="+cat_id,null,null,null,null,null);
 
-         int id=c.getColumnIndex(KEY_PID);
+         int pid=c.getColumnIndex(KEY_PID);
+         int id=c.getColumnIndex(KEY_SID);
          int row_id=c.getColumnIndex(KEY_ROWID);
          int image=c.getColumnIndex(KEY_IMAGE);
          int b_name=c.getColumnIndex(KEY_BNAME);
@@ -258,7 +264,8 @@ public class VendingDatabase {
              productResponse.setB_name(c.getString(b_name));
              productResponse.setC_name(c.getString(c_name));
              productResponse.setF_name(c.getString(f_name));
-             productResponse.setPId(c.getInt(id));
+             productResponse.setId(c.getInt(id));
+             productResponse.setPId(c.getInt(pid));
              productResponse.setPercepTag(c.getString(percepTag));
              productResponse.setRow(c.getInt(row));
              productResponse.setRow_id(c.getInt(row_id));
@@ -297,7 +304,8 @@ public class VendingDatabase {
      public List<ProductResponse> getTagBrand(String name) {
 
          Cursor c = ourdatabase.rawQuery("SELECT * FROM "+ DATABASE_TABLEPRODUCT + " WHERE "+ KEY_BNAME +" LIKE  \'%" +name+"%\'", null);
-         int id=c.getColumnIndex(KEY_PID);
+         int pid=c.getColumnIndex(KEY_PID);
+         int id=c.getColumnIndex(KEY_SID);
          int row_id=c.getColumnIndex(KEY_ROWID);
          int image=c.getColumnIndex(KEY_IMAGE);
          int b_name=c.getColumnIndex(KEY_BNAME);
@@ -323,7 +331,8 @@ public class VendingDatabase {
              productResponse.setB_name(c.getString(b_name));
              productResponse.setC_name(c.getString(c_name));
              productResponse.setF_name(c.getString(f_name));
-             productResponse.setPId(c.getInt(id));
+             productResponse.setPId(c.getInt(pid));
+             productResponse.setId(c.getInt(id));
              productResponse.setPercepTag(c.getString(percepTag));
              productResponse.setRow(c.getInt(row));
              productResponse.setRow_id(c.getInt(row_id));
@@ -338,7 +347,8 @@ public class VendingDatabase {
 
      public List<ProductResponse> getTagPrice(int lowrate, int highrate) {
          Cursor c = ourdatabase.rawQuery("SELECT * FROM "+ DATABASE_TABLEPRODUCT + " WHERE "+ KEY_MRP +" BETWEEN " +lowrate+" AND "+highrate, null);
-         int id=c.getColumnIndex(KEY_PID);
+         int pid=c.getColumnIndex(KEY_PID);
+         int id=c.getColumnIndex(KEY_SID);
          int row_id=c.getColumnIndex(KEY_ROWID);
          int image=c.getColumnIndex(KEY_IMAGE);
          int b_name=c.getColumnIndex(KEY_BNAME);
@@ -364,7 +374,8 @@ public class VendingDatabase {
              productResponse.setB_name(c.getString(b_name));
              productResponse.setC_name(c.getString(c_name));
              productResponse.setF_name(c.getString(f_name));
-             productResponse.setPId(c.getInt(id));
+             productResponse.setPId(c.getInt(pid));
+             productResponse.setId(c.getInt(id));
              productResponse.setPercepTag(c.getString(percepTag));
              productResponse.setRow(c.getInt(row));
              productResponse.setRow_id(c.getInt(row_id));
@@ -379,7 +390,8 @@ public class VendingDatabase {
      public List<ProductResponse> getTagFlavour(String name) {
 
          Cursor c = ourdatabase.rawQuery("SELECT * FROM "+ DATABASE_TABLEPRODUCT + " WHERE "+ KEY_FNAME +" LIKE  \'%" +name+"%\'", null);
-         int id=c.getColumnIndex(KEY_PID);
+         int pid=c.getColumnIndex(KEY_PID);
+         int id=c.getColumnIndex(KEY_SID);
          int row_id=c.getColumnIndex(KEY_ROWID);
          int image=c.getColumnIndex(KEY_IMAGE);
          int b_name=c.getColumnIndex(KEY_BNAME);
@@ -405,7 +417,8 @@ public class VendingDatabase {
              productResponse.setB_name(c.getString(b_name));
              productResponse.setC_name(c.getString(c_name));
              productResponse.setF_name(c.getString(f_name));
-             productResponse.setPId(c.getInt(id));
+             productResponse.setPId(c.getInt(pid));
+             productResponse.setId(c.getInt(id));
              productResponse.setPercepTag(c.getString(percepTag));
              productResponse.setRow(c.getInt(row));
              productResponse.setRow_id(c.getInt(row_id));
@@ -449,10 +462,10 @@ public class VendingDatabase {
         @Override
         public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE "+DATABASE_TABLE+" ("+KEY_ROWID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
-        KEY_NAME+" TEXT NOT NULL, "+KEY_SUBID+" INTEGER NOT NULL, "+KEY_UNITS+" INTEGER, "+KEY_CARTIMAGE+" BLOB, "+KEY_PRICE+" INTEGER NOT NULL);");
+        KEY_NAME+" TEXT NOT NULL, "+KEY_SUBID+" INTEGER NOT NULL, "+KEY_SID+" INTEGER NOT NULL, "+KEY_UNITS+" INTEGER, "+KEY_CARTIMAGE+" BLOB, "+KEY_PRICE+" INTEGER NOT NULL);");
 
         db.execSQL("CREATE TABLE "+DATABASE_TABLEPRODUCT+" ("+KEY_ROWID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                    KEY_BNAME+" TEXT NOT NULL, "+KEY_CNAME+" TEXT NOT NULL, "+KEY_FNAME+" TEXT NOT NULL, "+KEY_IMAGE+" BLOB, "+KEY_CATTAG+" TEXT, "+KEY_PERCEPTAG+" TEXT, "+KEY_PID+" INTEGER NOT NULL, "+KEY_UNITS+" INTEGER, "+KEY_CATID+" INTEGER, "+KEY_ROW+" INTEGER, "+KEY_COL+" INTEGER, "+KEY_MRP+" INTEGER NOT NULL);");
+                    KEY_BNAME+" TEXT NOT NULL, "+KEY_CNAME+" TEXT NOT NULL, "+KEY_FNAME+" TEXT NOT NULL, "+KEY_IMAGE+" BLOB, "+KEY_CATTAG+" TEXT, "+KEY_PERCEPTAG+" TEXT, "+KEY_PID+" INTEGER NOT NULL, "+KEY_SID+" INTEGER NOT NULL, "+KEY_UNITS+" INTEGER, "+KEY_CATID+" INTEGER, "+KEY_ROW+" INTEGER, "+KEY_COL+" INTEGER, "+KEY_MRP+" INTEGER NOT NULL);");
 
         }
 

@@ -31,7 +31,7 @@ public class VendingDatabase {
      public static final String KEY_CARTIMAGE="image";
 
      public static final String KEY_PID="product_id";
-     public static final String KEY_SID="stock_id";
+     //public static final String KEY_SID="stock_id";
      public static final String KEY_IMAGE="image";
      public static final String KEY_BNAME="b_name";
      public static final String KEY_FNAME="f_name";

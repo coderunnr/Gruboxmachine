@@ -167,6 +167,8 @@ public class VendingDatabase {
                  cv.put(KEY_CATID,0);
                  cv.put(KEY_MRP, productResponse.getMrp());
 
+
+
                  ourdatabase.insert(DATABASE_TABLEPRODUCT, null, cv);
 
 //             }

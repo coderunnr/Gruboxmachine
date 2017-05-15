@@ -9,4 +9,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.android.grubox.activity.MainActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:id="@+id/load_text"
+        android:text="loading..."
+        android:textSize="100dp"/>
+
 </RelativeLayout>

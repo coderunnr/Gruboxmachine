@@ -32,7 +32,7 @@
             android:paddingTop="24dp"
             android:paddingLeft="32dp"
             android:paddingRight="32dp"
-            android:background="#FFD75C"
+            android:background="@drawable/top_rounded"
             android:orientation="vertical">
 
             <!--Container 1, item 1-->

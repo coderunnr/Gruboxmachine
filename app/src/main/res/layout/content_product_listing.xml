@@ -68,8 +68,10 @@
         <!--For Container 1-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
+            android:layout_height="120dp"
+            android:paddingTop="24dp"
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp"
             android:background="@drawable/top_rounded"
             android:orientation="vertical">
 
@@ -82,40 +84,45 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="0dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textSize="18.4dp"
                         android:gravity="left"
-                        android:fontFamily="assets/fonts/Quicksand-Regular.otf"
                         android:text="GRUBOX"/>
 
                     <TextView
                         android:layout_width="match_parent"
+                        android:textSize="17.6dp"
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:text="12:30 PM"
-                        android:fontFamily="assets/fonts/Quicksand-Regular.otf"
                         android:textStyle="bold"/>
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
-                        android:text="your smart cafe"/>
+                        android:textSize="12dp"
+                        android:text="Your smart cafe"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:text="12 Maarch 2017, Monday"/>
+                        android:textSize="12dp"
+                        android:text="12 March 2017, Monday"/>
 
                 </RelativeLayout>
 
@@ -126,7 +133,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:text="Weather and news updates go here"/>
+                android:textSize="12dp"
+                android:text="Weather and news updates go here. Lorem Epsome aksfgaksfaskfgaksfhkasjfhjkajfkjasfbajksfbasjk"/>
 
         </LinearLayout>
 
@@ -134,13 +142,15 @@
         <!--Horizontally scrolling ListView-->
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="112dp"
+            android:background="#ffffff"
             android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="#ffffff"
-                android:layout_height="50dp"
+                android:padding="32dp"
                 android:orientation="horizontal"
                 android:id="@+id/fragment_container_top">
             </LinearLayout>
@@ -150,19 +160,20 @@
         <!-- For Container 3-->
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="50dp"
             android:background="#ffffff"
             android:orientation="horizontal">
 
             <!-- Ad image -->
             <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/fragment_container_left"
-            android:layout_width="200dp"
-            android:layout_height="650dp"
-            android:layout_weight="5.5"
-            android:layout_margin="20dp"
+                android:id="@+id/fragment_container_left"
+                android:layout_width="128.8dp"
+                android:layout_height="562dp"
+                android:layout_weight="5.5"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="32dp"
             />
 
         <!-- vertically scrolling-->
@@ -181,11 +192,13 @@
             <!--</GridView>-->
 
             <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/fragment_container_upper"
-            android:layout_width="600dp"
-            android:layout_height="650dp"
-            android:layout_weight="5.5"
-            android:layout_margin="20dp"
+                android:id="@+id/fragment_container_upper"
+                android:layout_width="470dp"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:layout_height="562dp"
+                android:layout_weight="5.5"
+                android:layout_marginBottom="72dp"
             />
 
         </LinearLayout>
@@ -193,11 +206,12 @@
         <!-- For Container 4-->
 
         <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/fragment_container_lower"
-        android:layout_width="match_parent"
-        android:background="@drawable/lower_corners"
-        android:layout_height="0dp"
-        android:layout_weight="2.5"/>
+            android:id="@+id/fragment_container_lower"
+            android:layout_width="match_parent"
+            android:background="#FAD25A"
+            android:paddingTop="56dp"
+            android:layout_height="0dp"
+            android:layout_weight="2.5"/>
             <!--tools:layout="@layout/cart_view" />-->
 
         <RelativeLayout

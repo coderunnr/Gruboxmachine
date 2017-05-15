@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.android.grubox.R;
 import com.android.grubox.connectionutils.Connection;
@@ -26,6 +27,7 @@ import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity {
 
     List<ProductResponse> productResponses;
+    TextView text_load_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         productResponses=new ArrayList<>();
         new ProductInfo(URL1.getProducturl(),new JSONObject()).execute();
+
+        text_load_text = (TextView)findViewById(R.id.load_text);
 
     }
 
@@ -67,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
                 JSONArray topArray=new JSONArray(s);
                 for(int i=0;i<topArray.length();i++)
                 {
+                    text_load_text.setText("Loading array element: " + i);
+
                     ProductResponse productResponse=new ProductResponse();
                     JSONObject topObject=topArray.getJSONObject(i);
                     productResponse.setRow(topObject.getInt("Row"));
@@ -94,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             new UpdateDatabase().execute();
+
+                text_load_text.setText("Update database executed");
 
 
             } catch (JSONException e) {
@@ -132,6 +140,9 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void aVoid) {
+
+            text_load_text.setText("Stating Activity");
+
             Intent intent=new Intent(MainActivity.this,TouchToStartActivity.class);
             startActivity(intent);
 

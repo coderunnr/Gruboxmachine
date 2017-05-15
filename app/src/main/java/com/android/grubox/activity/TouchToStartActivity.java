@@ -20,6 +20,7 @@ import com.android.grubox.fragments.CarouselOffers;
  */
 public class TouchToStartActivity extends AppCompatActivity {
     Button button_touchToStart;
+    Button button_show_all;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +63,17 @@ public class TouchToStartActivity extends AppCompatActivity {
         //To start the menu activity
         //This has to be inside an onClickListener
         button_touchToStart = (Button) findViewById(R.id.button_start);
+        button_show_all = (Button) findViewById(R.id.button_show_all);
 
         button_touchToStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(TouchToStartActivity.this,ProductListing.class);
+                startActivity(intent);
+            }
+        });
+
+        button_show_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(TouchToStartActivity.this,ProductListing.class);

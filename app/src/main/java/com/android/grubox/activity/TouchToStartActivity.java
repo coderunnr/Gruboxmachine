@@ -28,6 +28,7 @@ public class TouchToStartActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_touch_to_start);
 
+        //Temporary data for hashtag buttons
         final String[] web = {
                 "#masala", "#kurkure", "#CocaCola", "#healthy", "#Snacks", "#Mango", "#Chips", "#Chocolate", "#Fanta"
 
@@ -81,5 +82,26 @@ public class TouchToStartActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        button_touchToStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(TouchToStartActivity.this,ProductListing.class);
+                startActivity(intent);
+            }
+        });
+
+        button_show_all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(TouchToStartActivity.this,ProductListing.class);
+                startActivity(intent);
+            }
+        });
     }
 }

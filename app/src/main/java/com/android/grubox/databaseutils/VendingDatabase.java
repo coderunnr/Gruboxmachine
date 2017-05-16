@@ -71,6 +71,7 @@ public class VendingDatabase {
         cv.put(KEY_NAME,productResponse.getB_name()+" "+productResponse.getF_name());
         cv.put(KEY_PRICE,productResponse.getMrp());
         cv.put(KEY_UNITS,productResponse.getQuantity_cart());
+        cv.put(KEY_SID, productResponse.getId());
         cv.put(KEY_IMAGE, DbBitmapUtilityObj.getBytes(productResponse.getImage()));
         ourdatabase.insert(DATABASE_TABLE,null,cv);
 
@@ -102,7 +103,7 @@ public class VendingDatabase {
      }
 
     public List<ProductResponse> getCartData() {
-        String[] columns=new String[] {KEY_ROWID,KEY_NAME,KEY_SUBID,KEY_PRICE,KEY_UNITS,KEY_CARTIMAGE};
+        String[] columns=new String[] {KEY_ROWID,KEY_NAME,KEY_SUBID,KEY_PRICE,KEY_UNITS,KEY_CARTIMAGE,KEY_SID};
 
         Cursor c=ourdatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);
         int sub_id=c.getColumnIndex(KEY_SUBID);
@@ -111,6 +112,7 @@ public class VendingDatabase {
         int row_id=c.getColumnIndex(KEY_ROWID);
         int units=c.getColumnIndex(KEY_UNITS);
         int image = c.getColumnIndex(KEY_CARTIMAGE);
+        int stock_id = c.getColumnIndex(KEY_SID);
 
 
         List<ProductResponse> databaseModels=new ArrayList<>();
@@ -118,6 +120,7 @@ public class VendingDatabase {
 
             ProductResponse databaseModel=new ProductResponse();
             databaseModel.setPId(c.getInt(sub_id));
+            databaseModel.setId(c.getInt(stock_id));
             databaseModel.setF_name(c.getString(sub_name));
             databaseModel.setMrp(c.getInt(price));
             databaseModel.setQuantity_cart(c.getInt(units));

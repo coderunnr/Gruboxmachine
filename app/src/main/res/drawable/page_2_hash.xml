@@ -7,22 +7,16 @@
         />
 
     <solid android:color="#FFFFFF" />
+
     <!--<padding-->
-    <!--android:bottom="10dp"-->
-    <!--android:left="5dp"-->
-    <!--android:right="5dp"-->
-    <!--android:top="10dp" />-->
+    <!--android:bottom="3dp" />-->
 
     <stroke android:width="2dp" android:color="#FFD75C" />
 
-    <!--<layout-margin
-        android:bottom="10dp"
-        android:left="5dp"
-        android:right="5dp"
-        android:top="10dp" />-->
+    <!--<layout-margin-->
+        <!--android:bottom="3dp" />-->
 
     <size
-        android:height="25dp"
         android:width="70dp"  />
 
 </shape>

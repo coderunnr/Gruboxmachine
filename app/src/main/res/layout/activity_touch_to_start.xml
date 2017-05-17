@@ -155,7 +155,7 @@
         android:layout_height="120dp"
         android:layout_alignParentBottom="true"
         android:textSize="17.6dp"
-        android:background="#FFD75C"
+        android:background="@drawable/page_1_start_button"
         android:id="@+id/button_start"
         android:text="Touch to start"/>
 

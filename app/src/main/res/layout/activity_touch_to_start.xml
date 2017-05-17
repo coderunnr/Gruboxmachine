@@ -106,12 +106,22 @@
             <!--android:background="#ffffff"-->
             <!--android:src="@mipmap/feeling_hungry"-->
             <!--/>-->
-        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/MainCarousel"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="600dp"
+            android:background="@drawable/carousel_border"
+            android:padding="12dp"
             android:layout_margin="32dp"
-            />
+            android:layout_height="600dp">
+
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/MainCarousel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+                <!--android:layout_margin="32dp"-->
+
+
+        </FrameLayout>
+
         <!-- For Container 3-->
         <GridView
             android:layout_width="match_parent"
@@ -120,12 +130,10 @@
             android:layout_marginRight="35dp"
             android:background="#ffffff"
             android:id="@+id/grid_for_buttons"
-            android:columnWidth="200dp"
             android:numColumns="4"
             android:layout_marginBottom="15dp"
-            android:verticalSpacing="5dp"
-            android:horizontalSpacing="5dp"
-            android:stretchMode="columnWidth"
+            android:verticalSpacing="18.4dp"
+            android:horizontalSpacing="17.6dp"
             android:scrollbars="horizontal"
             android:gravity="center">
         </GridView>

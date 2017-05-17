@@ -208,7 +208,7 @@
         <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/fragment_container_lower"
             android:layout_width="match_parent"
-            android:background="#FAD25A"
+            android:background="#FFD75C"
             android:paddingTop="56dp"
             android:layout_height="0dp"
             android:layout_weight="2.5"/>
@@ -217,7 +217,7 @@
         <RelativeLayout
             android:background="@drawable/bottom_rounded"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             >
 
             <Button

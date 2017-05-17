@@ -21,8 +21,8 @@
         <!--android:right="5dp"-->
         <!--android:top="10dp" />-->
 
-    <size
-        android:height="40dp"
-        android:width="136dp" />
+    <!--<size-->
+        <!--android:height="40dp"-->
+        <!--android:width="136dp" />-->
 
 </shape>

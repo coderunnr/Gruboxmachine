@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#ffffff"
+        android:background="@drawable/top_rounded_outer_container"
         android:paddingBottom="0dp"
         tools:context="com.example.android.grubox_ui.MainActivity">
 
@@ -117,7 +117,7 @@
             android:layout_width="match_parent"
             android:layout_height="153dp"
             android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
+            android:layout_marginRight="35dp"
             android:background="#ffffff"
             android:id="@+id/grid_for_buttons"
             android:columnWidth="200dp"
@@ -130,15 +130,22 @@
             android:gravity="center">
         </GridView>
 
-        <Button
-            android:layout_marginLeft="249.6dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button_show_all"
-            android:background="@drawable/page_1_show_all"
-            android:text="Show All"
-            android:textColor="#000000"
-            android:textAlignment="center"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/button_show_all"
+                android:background="@drawable/page_1_show_all"
+                android:text="Show All"
+                android:textColor="#000000"
+                android:textAlignment="center"/>
+
+
+        </RelativeLayout>
 
     </LinearLayout>
 

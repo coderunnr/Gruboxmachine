@@ -168,6 +168,20 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
             int size=0;
             try {
                 vendingDatabase.open();
+
+                //Testing
+                //check if table exists
+                if(vendingDatabase.isTableExists("carttable")){
+                    Log.v("checkdb", "The table exists");
+                }
+                else{
+                    Log.v("checkdb", "The table wasn't created properly");
+                }
+
+
+                //Testing end
+
+
                size= vendingDatabase.getCartData().size();
             } catch (SQLException e) {
                 e.printStackTrace();

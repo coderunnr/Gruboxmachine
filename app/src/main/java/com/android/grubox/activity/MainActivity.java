@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         productResponses=new ArrayList<>();
         new ProductInfo(URL1.getProducturl(),new JSONObject()).execute();
 

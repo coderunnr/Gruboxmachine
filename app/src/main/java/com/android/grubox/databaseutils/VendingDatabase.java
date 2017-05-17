@@ -438,7 +438,8 @@ public class VendingDatabase {
      public void DeleteCart() {
 //         ourhelper=new Dbhelper(ourcontext);
 //         ourdatabase=ourhelper.getWritableDatabase();
-         ourdatabase.execSQL("DROP TABLE IF EXISTS "+DATABASE_TABLE);
+         //On cencel button cart items are removed
+         ourdatabase.execSQL("DELETE FROM "+ DATABASE_TABLE);
 
      }
 
@@ -464,10 +465,14 @@ public class VendingDatabase {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE "+DATABASE_TABLE+" ("+KEY_ROWID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
-        KEY_NAME+" TEXT NOT NULL, "+KEY_SUBID+" INTEGER NOT NULL, "+KEY_SID+" INTEGER NOT NULL, "+KEY_UNITS+" INTEGER, "+KEY_CARTIMAGE+" BLOB, "+KEY_PRICE+" INTEGER NOT NULL);");
+            db.execSQL("CREATE TABLE " + DATABASE_TABLE + " (" + KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    KEY_NAME + " TEXT NOT NULL, " + KEY_SUBID + " INTEGER NOT NULL, " + KEY_SID + " INTEGER NOT NULL, " + KEY_UNITS + " INTEGER, " + KEY_CARTIMAGE + " BLOB, " + KEY_PRICE + " INTEGER NOT NULL);");
 
-        db.execSQL("CREATE TABLE "+DATABASE_TABLEPRODUCT+" ("+KEY_ROWID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+            //Check here if the table is created properly
+            Log.v("checkdb", "Inside onCreate of Vending Database");
+
+
+            db.execSQL("CREATE TABLE "+DATABASE_TABLEPRODUCT+" ("+KEY_ROWID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
                     KEY_BNAME+" TEXT NOT NULL, "+KEY_CNAME+" TEXT NOT NULL, "+KEY_FNAME+" TEXT NOT NULL, "+KEY_IMAGE+" BLOB, "+KEY_CATTAG+" TEXT, "+KEY_PERCEPTAG+" TEXT, "+KEY_PID+" INTEGER NOT NULL, "+KEY_SID+" INTEGER NOT NULL, "+KEY_UNITS+" INTEGER, "+KEY_CATID+" INTEGER, "+KEY_ROW+" INTEGER, "+KEY_COL+" INTEGER, "+KEY_MRP+" INTEGER NOT NULL);");
 
         }
@@ -480,6 +485,34 @@ public class VendingDatabase {
         }
     }
 
+    //Testing start
+
+     public boolean isTableExists(String tableName) {
+         //if(openDb) {
+             if(ourdatabase == null || !ourdatabase.isOpen()) {
+                 ourdatabase = ourhelper.getReadableDatabase();
+             }
+
+             if(!ourdatabase.isReadOnly()) {
+                 ourdatabase.close();
+                 ourdatabase = ourhelper.getReadableDatabase();
+             }
+         //}
+
+         Cursor cursor = ourdatabase.rawQuery("select DISTINCT tbl_name from sqlite_master where tbl_name = '"+tableName+"'", null);
+         if(cursor!=null) {
+             if(cursor.getCount()>0) {
+                 cursor.close();
+                 return true;
+             }
+             cursor.close();
+         }
+         return false;
+     }
+
+     //Testing end
+
+    //Constructers
     public VendingDatabase(Context c){
         ourcontext=c;
     }

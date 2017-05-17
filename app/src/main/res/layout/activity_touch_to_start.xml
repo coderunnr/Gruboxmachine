@@ -111,7 +111,7 @@
             android:background="@drawable/carousel_border"
             android:padding="12dp"
             android:layout_margin="32dp"
-            android:layout_height="600dp">
+            android:layout_height="650dp">
 
             <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/MainCarousel"
@@ -125,7 +125,7 @@
         <!-- For Container 3-->
         <GridView
             android:layout_width="match_parent"
-            android:layout_height="153dp"
+            android:layout_height="118dp"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="35dp"
             android:background="#ffffff"

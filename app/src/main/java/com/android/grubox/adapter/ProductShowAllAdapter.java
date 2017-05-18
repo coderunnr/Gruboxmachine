@@ -102,6 +102,8 @@ public class ProductShowAllAdapter extends RecyclerView.Adapter<ProductShowAllAd
         TextView fname;
         ImageView image;
         Button addtoCart;
+        //View Details button
+        Button viewDetails;
         GifImageView gifImageView;
         View card;
 
@@ -113,6 +115,8 @@ public class ProductShowAllAdapter extends RecyclerView.Adapter<ProductShowAllAd
             name=(TextView) v.findViewById(R.id.product_name);
             price=(TextView) v.findViewById(R.id.product_price);
             addtoCart=(Button) v.findViewById(R.id.add_to_cart);
+            //View details button
+            viewDetails=(Button) v.findViewById(R.id.viewdetails);
             fname=(TextView)v.findViewById(R.id.product_name_fname);
             main_layout=(LinearLayout)v.findViewById(R.id.recycleitem_linearlayout_product_list);
             ;           card=v.findViewById(R.id.card_item);
@@ -182,6 +186,14 @@ public class ProductShowAllAdapter extends RecyclerView.Adapter<ProductShowAllAd
                 // Be sure to call the superclass implementation
                 position_clciked=position;
                 return true;
+            }
+        });
+
+        //Added functionality to show details
+        holder.viewDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                productListing.replace_fragment_upper(productModels.get(position_clciked));
             }
         });
 //            holder.addtoCart.setOnClickListener(new View.OnClickListener() {

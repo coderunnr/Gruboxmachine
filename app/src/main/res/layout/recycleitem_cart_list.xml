@@ -62,30 +62,33 @@
                 android:gravity="center"
                 android:layout_below="@+id/quantity_text"
                 >
-                <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:id="@+id/minus_quantity_cart"
-                    android:src="@drawable/minus"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_total_quantity"
-                    android:text="1"
-                    android:gravity="center"
-                    android:textSize="12sp"
-                    android:fontFamily="sans-serif-light"
-                    android:padding="2dp"
 
-                    />
-                <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                <!--Remove these three items-->
+                <!--<ImageView-->
+                    <!--android:layout_width="15dp"-->
+                    <!--android:layout_height="15dp"-->
+                    <!--android:id="@+id/minus_quantity_cart"-->
+                    <!--android:src="@drawable/minus"-->
+                    <!--/>-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/tv_total_quantity"-->
+                    <!--android:text="1"-->
+                    <!--android:gravity="center"-->
+                    <!--android:textSize="12sp"-->
+                    <!--android:fontFamily="sans-serif-light"-->
+                    <!--android:padding="2dp"-->
 
-                    android:id="@+id/add__quantity_cart"
-                    android:src="@drawable/add"
-                    />
+                    <!--/>-->
+                <!--<ImageView-->
+                    <!--android:layout_width="15dp"-->
+                    <!--android:layout_height="15dp"-->
+
+                    <!--android:id="@+id/add__quantity_cart"-->
+                    <!--android:src="@drawable/add"-->
+                    <!--/>-->
+                <!--Remove these three items-->
             </LinearLayout>
 
 

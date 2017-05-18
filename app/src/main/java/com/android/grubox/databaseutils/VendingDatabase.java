@@ -57,14 +57,8 @@ public class VendingDatabase {
 
         String[] columns=new String[] {KEY_ROWID,KEY_SUBID};
 
-        Cursor c=ourdatabase.query(DATABASE_TABLE, columns,KEY_SUBID+"="+productResponse.getPId(), null, null, null, null);
-        int sub_id=c.getColumnIndex(KEY_SUBID);
-        int row_id=c.getColumnIndex(KEY_ROWID);
-        for(c.moveToFirst();!c.isAfterLast();c.moveToNext())
-        {
-            updateEntryQuantity(c.getInt(row_id),productResponse.getQuantity_cart()+1);
-            return;
-        }
+        //Removed functionality for quantity upgrade
+//         
 
         ContentValues cv=new ContentValues();
         cv.put(KEY_SUBID,productResponse.getPId());

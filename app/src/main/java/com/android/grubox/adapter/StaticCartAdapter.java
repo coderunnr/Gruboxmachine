@@ -19,8 +19,8 @@ import com.android.grubox.models.ProductResponse;
 import java.sql.SQLException;
 import java.util.List;
 
-import static com.android.grubox.R.id.add__quantity_cart;
-import static com.android.grubox.R.id.minus_quantity_cart;
+//import static com.android.grubox.R.id.add__quantity_cart;
+//import static com.android.grubox.R.id.minus_quantity_cart;
 
 /**
  * Created by root on 13/7/16.
@@ -40,7 +40,7 @@ public class StaticCartAdapter extends RecyclerView.Adapter<StaticCartAdapter.Vi
         // each data item is just a string in this case
 
         View v;
-        TextView name,price,quantity;
+        TextView name,price;
         ImageView image,plus,minus,remove_cart;
 
         public ViewHolder(View v, StaticCartAdapter myAdapter) {
@@ -49,7 +49,7 @@ public class StaticCartAdapter extends RecyclerView.Adapter<StaticCartAdapter.Vi
             image=(ImageView) v.findViewById(R.id.product_image);
             name=(TextView) v.findViewById(R.id.product_name);
             price=(TextView) v.findViewById(R.id.product_price);
-            quantity=(TextView) v.findViewById(R.id.tv_total_quantity);
+            //quantity=(TextView) v.findViewById(R.id.tv_total_quantity);
 //            remove_cart=(ImageView) v.findViewById(R.id.remove_cart_product);
 //            plus=(ImageView) v.findViewById(R.id.add__quantity_cart);
 //            minus=(ImageView) v.findViewById(R.id.minus_quantity_cart);
@@ -77,8 +77,8 @@ public class StaticCartAdapter extends RecyclerView.Adapter<StaticCartAdapter.Vi
 
         v= LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recycleitem_cart_list, parent, false);
-        v.findViewById(minus_quantity_cart).setEnabled(false);
-        v.findViewById(add__quantity_cart).setEnabled(false);
+        //v.findViewById(minus_quantity_cart).setEnabled(false);
+        //v.findViewById(add__quantity_cart).setEnabled(false);
 
         ViewHolder vh = new ViewHolder(v, this);
         return vh;
@@ -92,7 +92,7 @@ public class StaticCartAdapter extends RecyclerView.Adapter<StaticCartAdapter.Vi
         holder.name.setText(productModels.get(position).getF_name());
         holder.image.setImageBitmap(productModels.get(position).getImage());
         holder.price.setText(productModels.get(position).getMrp()+"");
-        holder.quantity.setText(productModels.get(position).getQuantity_cart()+"");
+        //holder.quantity.setText(productModels.get(position).getQuantity_cart()+"");
 //        holder.remove_cart.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {

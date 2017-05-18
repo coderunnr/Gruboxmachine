@@ -64,7 +64,6 @@ public class ProductMainPageAdapter extends RecyclerView.Adapter<ProductMainPage
     public boolean onDoubleTap(MotionEvent motionEvent) {
         productListing.replace_fragment_upper(productModels.get(position_clciked));
 
-
         return true;
     }
 

@@ -37,7 +37,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
         View v;
         TextView name,price,quantity;
-        ImageView image,plus,minus,remove_cart;
+        ImageView image,remove_cart;
 
         public ViewHolder(View v, CartAdapter myAdapter) {
             super(v);
@@ -47,8 +47,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             price=(TextView) v.findViewById(R.id.product_price);
             quantity=(TextView) v.findViewById(R.id.tv_total_quantity);
             remove_cart=(ImageView) v.findViewById(R.id.remove_cart_product);
-            plus=(ImageView) v.findViewById(R.id.add__quantity_cart);
-            minus=(ImageView) v.findViewById(R.id.minus_quantity_cart);
+            //plus=(ImageView) v.findViewById(R.id.add__quantity_cart);
+            //minus=(ImageView) v.findViewById(R.id.minus_quantity_cart);
 ;
         }
     }
@@ -85,53 +85,55 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.name.setText(productModels.get(position).getF_name());
         holder.image.setImageBitmap(productModels.get(position).getImage());
         holder.price.setText(productModels.get(position).getMrp()+"");
-        holder.quantity.setText(productModels.get(position).getQuantity_cart()+"");
+        //holder.quantity.setText(productModels.get(position).getQuantity_cart()+"");
         holder.remove_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 productListing.deleteProductFromCart(productModels.get(position));
             }
         });
-        holder.plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                VendingDatabase vendingDatabase=new VendingDatabase(productListing);
-                try {
-                    vendingDatabase.open();
-                    vendingDatabase.updateEntryQuantity(productModels.get(position).getRow_id(),productModels.get(position).getQuantity_cart()+1);
-                    vendingDatabase.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                productModels.get(position).setQuantity_cart(productModels.get(position).getQuantity_cart()+1);
-                holder.quantity.setText(productModels.get(position).getQuantity_cart()+"");
-                cartFragment.updateTotal();
-                if(context instanceof ProductListing){
-                    ((ProductListing)context).updateTotal();
-                }
-            }
-        });
-        holder.minus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (productModels.get(position).getQuantity_cart() > 1) {
-                    VendingDatabase vendingDatabase = new VendingDatabase(productListing);
-                    try {
-                        vendingDatabase.open();
-                        vendingDatabase.updateEntryQuantity(productModels.get(position).getRow_id(), productModels.get(position).getQuantity_cart() - 1);
-                        vendingDatabase.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    productModels.get(position).setQuantity_cart(productModels.get(position).getQuantity_cart() - 1);
-                    holder.quantity.setText(productModels.get(position).getQuantity_cart() + "");
-                    cartFragment.updateTotal();
-                    if(context instanceof ProductListing){
-                        ((ProductListing)context).updateTotal();
-                    }
-                }
-            }
-        });
+
+        //Removing the functionality to change the quantity in the cart
+//        holder.plus.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                VendingDatabase vendingDatabase=new VendingDatabase(productListing);
+//                try {
+//                    vendingDatabase.open();
+//                    vendingDatabase.updateEntryQuantity(productModels.get(position).getRow_id(),productModels.get(position).getQuantity_cart()+1);
+//                    vendingDatabase.close();
+//                } catch (SQLException e) {
+//                    e.printStackTrace();
+//                }
+//                productModels.get(position).setQuantity_cart(productModels.get(position).getQuantity_cart()+1);
+//                holder.quantity.setText(productModels.get(position).getQuantity_cart()+"");
+//                cartFragment.updateTotal();
+//                if(context instanceof ProductListing){
+//                    ((ProductListing)context).updateTotal();
+//                }
+//            }
+//        });
+//        holder.minus.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (productModels.get(position).getQuantity_cart() > 1) {
+//                    VendingDatabase vendingDatabase = new VendingDatabase(productListing);
+//                    try {
+//                        vendingDatabase.open();
+//                        vendingDatabase.updateEntryQuantity(productModels.get(position).getRow_id(), productModels.get(position).getQuantity_cart() - 1);
+//                        vendingDatabase.close();
+//                    } catch (SQLException e) {
+//                        e.printStackTrace();
+//                    }
+//                    productModels.get(position).setQuantity_cart(productModels.get(position).getQuantity_cart() - 1);
+//                    holder.quantity.setText(productModels.get(position).getQuantity_cart() + "");
+//                    cartFragment.updateTotal();
+//                    if(context instanceof ProductListing){
+//                        ((ProductListing)context).updateTotal();
+//                    }
+//                }
+//            }
+//        });
     }
 
 

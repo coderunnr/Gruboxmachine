@@ -61,9 +61,24 @@ public class CartFragment extends Fragment {
             total_cart = (TextView) getActivity().findViewById(R.id.staticcart_amount);
         }
         // specify an adapter (see also next example)
-        refreshCart();
-       // mAdapter = new CartAdapter((ProductListing)getActivity(),productModels,getContext());
-       // mRecyclerView.setAdapter(mAdapter);
+
+        //testing starts here
+        //Setting the adapter
+//        if(getActivity() instanceof ProductListing) {
+//            mAdapter = new CartAdapter((ProductListing) getActivity(), productModels, getContext(), this);
+//            //mAdapter.notifyDataSetChanged();
+//        }
+//        else if(getActivity() instanceof LoyaltyandPayments){
+//            mAdapter = new StaticCartAdapter((LoyaltyandPayments) getActivity(), productModels, getContext(), this);
+//            //mAdapter.notifyDataSetChanged();
+//        }
+//        mRecyclerView.setAdapter(mAdapter);
+
+        //refreshCart();
+        //mAdapter.notifyDataSetChanged();
+
+        //Testing ends here
+
 //        v.findViewById(R.id.cart_pay_with_cash).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -111,6 +126,12 @@ public class CartFragment extends Fragment {
 
 
     public void refreshCart() {
+        //Clearing the last adapter
+//        if(mAdapter!=null) {
+//            productModels.clear();
+//            mAdapter.notifyDataSetChanged();
+//        }
+
         VendingDatabase vendingDatabase=new VendingDatabase(getActivity());
         try {
             vendingDatabase.open();
@@ -121,12 +142,24 @@ public class CartFragment extends Fragment {
         }
 
         if(getActivity() instanceof ProductListing) {
-            mAdapter = new CartAdapter((ProductListing) getActivity(), productModels, getContext(), this);
+            this.mAdapter = new CartAdapter((ProductListing) getActivity(), productModels, getContext(), this);
+            //mAdapter.notifyDataSetChanged();
         }
         else if(getActivity() instanceof LoyaltyandPayments){
-            mAdapter = new StaticCartAdapter((LoyaltyandPayments) getActivity(), productModels, getContext(), this);
+            this.mAdapter = new StaticCartAdapter((LoyaltyandPayments) getActivity(), productModels, getContext(), this);
+            //mAdapter.notifyDataSetChanged();
         }
-        mRecyclerView.setAdapter(mAdapter);
+
+        if(this.mAdapter!=null){
+            mRecyclerView.swapAdapter(mAdapter, false);
+        }
+        else{
+            mRecyclerView.setAdapter(mAdapter);
+        }
+
+//        mRecyclerView.setAdapter(mAdapter);
+
+        //mAdapter.notifyDataSetChanged();
         updateTotal();
 //        ((ProductListing) getActivity()).updateTotal();
     }

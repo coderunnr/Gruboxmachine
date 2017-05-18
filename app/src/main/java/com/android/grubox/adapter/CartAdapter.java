@@ -90,6 +90,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 productListing.deleteProductFromCart(productModels.get(position));
+                //Added for debugging
+                notifyItemRemoved(position);
             }
         });
 

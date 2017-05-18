@@ -270,10 +270,12 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
                             vendingDatabase.open();
                             vendingDatabase.DeleteCart();
                             vendingDatabase.close();
+                            cartFragment.refreshCart();
+
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
-                        finish();
+                        //finish();
 
                     }
                 }
@@ -451,6 +453,9 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
         try {
             vendingDatabase.open();
             vendingDatabase.deleteEntryforcart(productModel.getRow_id());
+            //To remove black space
+            cartFragment.refreshCart();
+
 //            if(vendingDatabase.getCartData().size()==0)
 //            {
 //                showCarousel();

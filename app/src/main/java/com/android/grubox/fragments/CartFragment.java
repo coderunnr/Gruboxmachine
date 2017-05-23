@@ -1,12 +1,15 @@
 package com.android.grubox.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +39,7 @@ import java.util.List;
 public class CartFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    public RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     int total=0;
     TextView total_cart;
@@ -63,76 +66,40 @@ public class CartFragment extends Fragment {
         // specify an adapter (see also next example)
 
         //testing starts here
-        //Setting the adapter
-//        if(getActivity() instanceof ProductListing) {
-//            mAdapter = new CartAdapter((ProductListing) getActivity(), productModels, getContext(), this);
-//            //mAdapter.notifyDataSetChanged();
-//        }
-//        else if(getActivity() instanceof LoyaltyandPayments){
-//            mAdapter = new StaticCartAdapter((LoyaltyandPayments) getActivity(), productModels, getContext(), this);
-//            //mAdapter.notifyDataSetChanged();
-//        }
-//        mRecyclerView.setAdapter(mAdapter);
+        //Setting the adapter in OnCreate() once.
+        //Making a new adapter
+        //Adapter is in the fragment named "CartFrag"
+        if(getActivity() instanceof ProductListing) {
+            CartFragment t= (CartFragment)getFragmentManager().findFragmentByTag("CartFrag");
+            this.mAdapter = new CartAdapter((ProductListing) getActivity(), productModels, getContext(), t);
+            //mAdapter.notifyDataSetChanged();
+        }
+        else if(getActivity() instanceof LoyaltyandPayments){
+            CartFragment t= (CartFragment)getFragmentManager().findFragmentByTag("CartFrag");
+            this.mAdapter = new StaticCartAdapter((LoyaltyandPayments) getActivity(), productModels, getContext(), t);
+            //mAdapter.notifyDataSetChanged();
+        }
+        mRecyclerView.setAdapter(mAdapter);
 
+        //No need to call refresh cart as there is nothing to refresh
+        //First call to refresh will be called when cart is updated for the first time
         //refreshCart();
-        //mAdapter.notifyDataSetChanged();
 
         //Testing ends here
-
-//        v.findViewById(R.id.cart_pay_with_cash).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                SharedPreferences sp = getActivity().getSharedPreferences("grubox_port", getActivity().MODE_PRIVATE);
-//                sp.edit().putInt("called",0).apply();
-//                Intent intent=new Intent(getContext(), PayWithCash.class);
-//                startActivity(intent);
-////                Intent intent=new Intent(getContext(), TestMachineMain.class);
-////                startActivity(intent);
-//
-//            }
-//        });
-//        v.findViewById(R.id.cart_pay_with_paytm).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                SharedPreferences sp = getActivity().getSharedPreferences("grubox_port", getActivity().MODE_PRIVATE);
-////                sp.edit().putInt("called",0).apply();
-////                Intent intent=new Intent(getContext(), PayWithCash.class);
-////                startActivity(intent);
-//                Intent intent=new Intent(getContext(), PayWithPaytm.class);
-//                intent.putExtra("money",total);
-//                startActivity(intent);
-//
-//            }
-//        });
-//
-//        v.findViewById(R.id.cart_pay_with_grucard).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                SharedPreferences sp = getActivity().getSharedPreferences("grubox_port", getActivity().MODE_PRIVATE);
-////                sp.edit().putInt("called",0).apply();
-//
-////                Intent intent=new Intent(getContext(), PayWithPaytm.class);
-//                Intent intent=new Intent(getContext(), CashCommunicate.class);
-//                intent.putExtra("amount",total);
-//                startActivity(intent);
-//
-//
-//            }
-//        });
-//        Intent intent=new Intent(getContext(), PayWithPaytm.class);
-//        startActivity(intent);
         return v;
     }
 
 
     public void refreshCart() {
         //Clearing the last adapter
-//        if(mAdapter!=null) {
-//            productModels.clear();
-//            mAdapter.notifyDataSetChanged();
-//        }
+        if(mAdapter!=null) {
+            productModels.clear();
+            mAdapter.notifyDataSetChanged();
+        }
 
-        VendingDatabase vendingDatabase=new VendingDatabase(getActivity());
+        //Fetching data from the database
+        //Maybe the fragment hasn't been added yet
+        VendingDatabase vendingDatabase=new VendingDatabase(getActivity().getApplicationContext());
         try {
             vendingDatabase.open();
             productModels=vendingDatabase.getCartData();
@@ -141,27 +108,33 @@ public class CartFragment extends Fragment {
             e.printStackTrace();
         }
 
-        if(getActivity() instanceof ProductListing) {
-            this.mAdapter = new CartAdapter((ProductListing) getActivity(), productModels, getContext(), this);
-            //mAdapter.notifyDataSetChanged();
-        }
-        else if(getActivity() instanceof LoyaltyandPayments){
-            this.mAdapter = new StaticCartAdapter((LoyaltyandPayments) getActivity(), productModels, getContext(), this);
-            //mAdapter.notifyDataSetChanged();
-        }
+        mRecyclerView.setAdapter(mAdapter);
 
-        if(this.mAdapter!=null){
-            mRecyclerView.swapAdapter(mAdapter, false);
-        }
-        else{
-            mRecyclerView.setAdapter(mAdapter);
-        }
+        mAdapter.notifyDataSetChanged();
 
-//        mRecyclerView.setAdapter(mAdapter);
-
-        //mAdapter.notifyDataSetChanged();
+        //Updating the total amount to be paid
         updateTotal();
 //        ((ProductListing) getActivity()).updateTotal();
+    }
+
+    public void add_item(ProductResponse productModel){
+
+        productModels.add(productModel);
+        mAdapter.notifyDataSetChanged();
+        updateTotal();
+
+    }
+
+    public void delete_item(ProductResponse productModel){
+        productModels.remove(productModel);
+        mAdapter.notifyDataSetChanged();
+        updateTotal();
+    }
+
+    public void clear_cart(){
+        productModels.clear();
+        mAdapter.notifyDataSetChanged();
+        updateTotal();
     }
 
     public void updateTotal()
@@ -181,5 +154,12 @@ public class CartFragment extends Fragment {
         else {
             ((ProductListing) getActivity()).updateTotal();
         }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        Log.v("Debug", "Attached");
     }
 }

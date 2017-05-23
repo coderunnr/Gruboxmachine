@@ -62,24 +62,27 @@
         android:orientation="vertical"
         android:id="@+id/rootview"
         android:background="@drawable/tag_background"
-        android:layout_margin="35px"
+        android:layout_margin="25.8dp"
         tools:context="com.example.android.grubox_ui.MainActivity">
 
         <!--For Container 1-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:paddingTop="24dp"
-            android:paddingLeft="32dp"
-            android:paddingRight="32dp"
+            android:layout_height="129.86dp"
             android:background="@drawable/top_rounded"
             android:orientation="vertical">
+            <!--android:paddingTop="24dp"-->
+            <!--android:paddingLeft="32dp"-->
+            <!--android:paddingRight="32dp"-->
 
             <!--Container 1, item 1-->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="34.4dp"
+                android:layout_marginRight="34.4dp"
+                android:layout_marginTop="30dp"
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -90,13 +93,13 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="18.4dp"
+                        android:textSize="21.5dp"
                         android:gravity="left"
                         android:text="GRUBOX"/>
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:textSize="17.6dp"
+                        android:textSize="21.5dp"
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:text="12:30 PM"
@@ -107,21 +110,21 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp">
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="7dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
-                        android:textSize="12dp"
+                        android:textSize="10dp"
                         android:text="Your smart cafe"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:textSize="12dp"
+                        android:textSize="12.9dp"
                         android:text="12 March 2017, Monday"/>
 
                 </RelativeLayout>
@@ -133,7 +136,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textSize="12dp"
+                android:textSize="12.9dp"
                 android:text="Weather and news updates go here. Lorem Epsome aksfgaksfaskfgaksfhkasjfhjkajfkjasfbajksfbasjk"/>
 
         </LinearLayout>
@@ -142,15 +145,15 @@
         <!--Horizontally scrolling ListView-->
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="112dp"
+            android:layout_height="120.4dp"
             android:background="#ffffff"
             android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="34.4dp"
                 android:background="#ffffff"
-                android:padding="32dp"
                 android:orientation="horizontal"
                 android:id="@+id/fragment_container_top">
             </LinearLayout>
@@ -167,13 +170,12 @@
 
             <!-- Ad image -->
             <FrameLayout
-                android:layout_width="128.8dp"
-                android:layout_height="562dp"
-                android:layout_marginLeft="32dp"
+                android:layout_width="139.32dp"
+                android:layout_height="552.12dp"
+                android:layout_marginLeft="34.4dp"
                 android:background="@drawable/carousel_border"
-                android:padding="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="32dp">
+                android:padding="8.6dp"
+                android:layout_marginBottom="77.4dp">
 
                 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/fragment_container_left"
@@ -202,11 +204,11 @@
             <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/fragment_container_upper"
                 android:layout_width="470dp"
-                android:paddingLeft="32dp"
-                android:paddingRight="32dp"
-                android:layout_height="562dp"
+                android:paddingLeft="32.68dp"
+                android:paddingRight="32.68dp"
+                android:layout_height="552.12dp"
                 android:layout_weight="5.5"
-                android:layout_marginBottom="72dp"
+                android:layout_marginBottom="77.4dp"
             />
 
         </LinearLayout>
@@ -259,10 +261,10 @@
 
     <!--To position it over the two layouts-->
     <RelativeLayout
-        android:layout_width="600dp"
+        android:layout_width="627.8dp"
         android:background="@drawable/total_amount_text"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="850dp"
+        android:layout_marginTop="868.6dp"
         android:layout_height="wrap_content"
         >
 

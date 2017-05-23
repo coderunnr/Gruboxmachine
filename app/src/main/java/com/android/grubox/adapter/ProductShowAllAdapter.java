@@ -37,18 +37,19 @@ public class ProductShowAllAdapter extends RecyclerView.Adapter<ProductShowAllAd
     Context context;
     ProductListing productListing;
     List<ProductResponse> productModels;
-    int position_clciked=0;
+    int position_clciked;
     private GestureDetectorCompat mDetector;
 
     @Override
     public boolean onSingleTapConfirmed(MotionEvent motionEvent) {
+        //if(position_clciked != -1)
         productListing.addtoCart(productModels.get(position_clciked));
         return true;
     }
 
     @Override
     public boolean onDoubleTap(MotionEvent motionEvent) {
-        productListing.replace_fragment_upper(productModels.get(position_clciked));
+        //productListing.replace_fragment_upper(productModels.get(position_clciked));
 
 
         return true;

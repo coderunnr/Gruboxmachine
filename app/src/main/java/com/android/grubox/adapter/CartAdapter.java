@@ -2,6 +2,7 @@ package com.android.grubox.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -91,7 +92,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             public void onClick(View view) {
                 productListing.deleteProductFromCart(productModels.get(position));
                 //Added for debugging
-                notifyItemRemoved(position);
+                //notifyItemRemoved(position);
             }
         });
 

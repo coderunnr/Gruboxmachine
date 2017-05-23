@@ -1,9 +1,11 @@
 package com.android.grubox.activity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -28,12 +30,14 @@ public class TouchToStartActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_touch_to_start);
 
-        //Temporary data for hashtag buttons
-        final String[] web = {
-                "#masala", "#kurkure", "#CocaCola", "#healthy", "#Snacks", "#Mango", "#Chips", "#Chocolate", "#Fanta"
+        //To get the dimensions of the screen
+        Configuration config = this.getResources().getConfiguration();
+        int width = config.screenWidthDp;
+        int height = config.screenHeightDp;
 
-        };
+        Log.v("Dimensions: w:"+ width +"; h: " +height, "dim");
 
+        //Adding the carousel for ads
         if (findViewById(R.id.MainCarousel) != null) {
 
             if (savedInstanceState != null) {
@@ -47,22 +51,30 @@ public class TouchToStartActivity extends AppCompatActivity {
                     .add(R.id.MainCarousel, fragment).commit();
         }
 
+        //Temporary data for hashtag buttons
+        final String[] web = {
+                "#masala", "#kurkure", "#cocacola", "#healthy", "#snacks", "#mango", "#chips", "#chocolate", "#fanta"
+
+        };
+
+        //Adding the adapter for the gridView
         GridView first_grid;
         TouchToStartGrid adapter = new TouchToStartGrid(TouchToStartActivity.this, web);
         first_grid=(GridView)findViewById(R.id.grid_for_buttons);
         first_grid.setAdapter(adapter);
-        first_grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                Toast.makeText(TouchToStartActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
-
-            }
-        });
+//        first_grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view,
+//                                    int position, long id) {
+//                Toast.makeText(TouchToStartActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
 
         //To start the menu activity
         //This has to be inside an onClickListener
+        //Both buttons perform the same function
         button_touchToStart = (Button) findViewById(R.id.button_start);
         button_show_all = (Button) findViewById(R.id.button_show_all);
 

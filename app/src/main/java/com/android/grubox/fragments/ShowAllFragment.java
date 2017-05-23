@@ -72,6 +72,7 @@ public class ShowAllFragment extends Fragment implements GestureOverlayView.OnGe
             }
 
 
+            //For unique mapping
         Set<ProductResponse> uniqueProductResponse = new HashSet<ProductResponse>(productModels);
         List<ProductResponse> uniqueProductResponseList = new ArrayList<>();
         uniqueProductResponseList.addAll(uniqueProductResponse);
@@ -157,6 +158,7 @@ public class ShowAllFragment extends Fragment implements GestureOverlayView.OnGe
 //        mAdapter5 = new ProductShowAllAdapter((ProductListing) getActivity(),row5,getContext());
 //        mAdapter6 = new ProductShowAllAdapter((ProductListing) getActivity(),row6,getContext());
         mRecyclerView1.setAdapter(mAdapter1);
+        //mRecyclerView1.setScrollbarFadingEnabled(false);
 //        mRecyclerView2.setAdapter(mAdapter2);
 //        mRecyclerView3.setAdapter(mAdapter3);
 //        mRecyclerView4.setAdapter(mAdapter4);

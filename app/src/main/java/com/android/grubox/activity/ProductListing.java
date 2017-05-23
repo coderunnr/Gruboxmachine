@@ -10,6 +10,7 @@ import android.gesture.Prediction;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
@@ -50,7 +51,7 @@ import static android.R.attr.typeface;
 
 public class ProductListing extends AppCompatActivity implements View.OnClickListener {
 
-    CartFragment cartFragment;
+    private CartFragment cartFragment;
     MediaPlayer mp;
     boolean emptyCart=true;
     PowerManager powerManager;
@@ -110,7 +111,7 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
 
 
 
-        setUpViews();
+        //setUpViews();
         if (findViewById(R.id.fragment_container_upper) != null) {
 
             // However, if we're being restored from a previous state,
@@ -131,7 +132,10 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
 
             // Add the fragment to the 'fragment_container' FrameLayout
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container_upper, showAllFragment).commit();
+                    .add(R.id.fragment_container_upper, showAllFragment, "showAllFrag")
+                    //.add(R.id.fragment_container_upper, showAllFragment)
+                    //.add(R.id.fragment_container_upper, showAllFragment)
+                    .commit();
         }
         if (findViewById(R.id.fragment_container_top) != null) {
 
@@ -190,10 +194,13 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
 //            if(size==0)
 //             fragment=new CarouselMain();
 //            else {
-            fragment = new CartFragment();
-            cartFragment=(CartFragment)fragment;
+            //Instead of this
+//            fragment = new CartFragment();
+//            cartFragment=(CartFragment)fragment;
 //            }
 //            cartFragment=new CartFragment();
+
+                this.cartFragment = new CartFragment();
 
             // In case this activity was started with special instructions from an
             // Intent, pass the Intent's extras to the fragment as arguments
@@ -201,7 +208,7 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
 
             // Add the fragment to the 'fragment_container' FrameLayout
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container_lower, fragment).commit();
+                    .add(R.id.fragment_container_lower, cartFragment, "CartFrag").commit();
         }
         if (findViewById(R.id.fragment_container_left) != null) {
 
@@ -270,7 +277,8 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
                             vendingDatabase.open();
                             vendingDatabase.DeleteCart();
                             vendingDatabase.close();
-                            cartFragment.refreshCart();
+                            cartFragment = (CartFragment)getSupportFragmentManager().findFragmentByTag("CartFrag");
+                            cartFragment.clear_cart();
 
                         } catch (SQLException e) {
                             e.printStackTrace();
@@ -424,9 +432,11 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
 
     public void addtoCart(ProductResponse productModel)
     {
+        //Executed only the first time to add the fragment
         if(emptyCart)
         {
-            showCart();
+            //showCart();
+            emptyCart=false;
 
         }
 
@@ -438,23 +448,27 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if(emptyCart){
-            emptyCart=false;
-        }
-        else {
-            cartFragment.refreshCart();
-        }
+//        if(emptyCart){
+//            emptyCart=false;
+//        }
+//        else{
+            //cartFragment.refreshCart();
+            //cartFragment = (CartFragment)getSupportFragmentManager().findFragmentByTag("CartFrag");
+            //cartFragment.mAdapter.notifyDataSetChanged();
+            this.cartFragment.add_item(productModel);
+//        }
         updateTotal();
     }
 
 
     public void deleteProductFromCart(ProductResponse productModel) {
         VendingDatabase vendingDatabase=new VendingDatabase(ProductListing.this);
+        cartFragment = (CartFragment)getSupportFragmentManager().findFragmentByTag("CartFrag");
         try {
             vendingDatabase.open();
             vendingDatabase.deleteEntryforcart(productModel.getRow_id());
             //To remove black space
-            cartFragment.refreshCart();
+            //cartFragment.refreshCart();
 
 //            if(vendingDatabase.getCartData().size()==0)
 //            {
@@ -464,7 +478,24 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        cartFragment.refreshCart();
+        cartFragment.delete_item(productModel);
+
+//        CartFragment temp = (CartFragment) getSupportFragmentManager().findFragmentByTag("CartFrag");
+//        getSupportFragmentManager().beginTransaction();
+
+
+        //Refresh the fragment
+//        CartFragment frg = null;
+//        frg = (CartFragment) getSupportFragmentManager().findFragmentByTag("CartFrag");
+//        final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//        ft.remove(frg);
+//        //CartFragment new_frag = new CartFragment();
+        //ft.attach(frg);
+//        ft.add(R.id.fragment_container_lower, cartFragment, "CartFrag");
+//        ft.commit();
+        //To add a new fragment
+        //.add(R.id.fragment_container_lower, cartFragment, "CartFrag").commit();
+
         updateTotal();
     }
 
@@ -474,7 +505,8 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
         if(tagModel.getType()==3)
         {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            ShowAllFragment showAllFragment=new ShowAllFragment();
+            //ShowAllFragment showAllFragment=new ShowAllFragment();
+            ShowAllFragment showAllFragment = (ShowAllFragment) getSupportFragmentManager().findFragmentByTag("showAllFrag");
             transaction.replace(R.id.fragment_container_upper, showAllFragment);
             transaction.addToBackStack(null);
             transaction.commit();
@@ -504,8 +536,12 @@ public class ProductListing extends AppCompatActivity implements View.OnClickLis
     public void showCart()
     {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        cartFragment=new CartFragment();
-        transaction.replace(R.id.fragment_container_lower, cartFragment);
+        cartFragment=(CartFragment) getSupportFragmentManager().findFragmentByTag("CartFrag");
+
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_container_lower) != null)
+            transaction.replace(R.id.fragment_container_lower, cartFragment);
+        else
+            transaction.add(R.id.fragment_container_lower, cartFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }

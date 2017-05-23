@@ -10,7 +10,10 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
+        android:layout_marginTop="25.8dp"
+        android:layout_marginBottom="25.8dp"
+        android:layout_marginLeft="25.8dp"
+        android:layout_marginRight="25.8dp"
         android:layout_gravity="left|bottom">
 
 
@@ -28,18 +31,21 @@
         <!--For Container 1-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:paddingTop="24dp"
-            android:paddingLeft="32dp"
-            android:paddingRight="32dp"
+            android:layout_height="129.86dp"
             android:background="@drawable/top_rounded"
             android:orientation="vertical">
+        <!--android:paddingTop="24dp"-->
+            <!--android:paddingLeft="32dp"-->
+            <!--android:paddingRight="32dp"-->
 
             <!--Container 1, item 1-->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="34.4dp"
+                android:layout_marginRight="34.4dp"
+                android:layout_marginTop="30dp"
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -50,13 +56,13 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="18.4dp"
+                        android:textSize="21.5dp"
                         android:gravity="left"
                         android:text="GRUBOX"/>
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:textSize="17.6dp"
+                        android:textSize="21.5dp"
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:text="12:30 PM"
@@ -67,21 +73,21 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp">
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="7dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
-                        android:textSize="12dp"
+                        android:textSize="10dp"
                         android:text="Your smart cafe"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:textSize="12dp"
+                        android:textSize="12.9dp"
                         android:text="12 March 2017, Monday"/>
 
                 </RelativeLayout>
@@ -93,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textSize="12dp"
+                android:textSize="12.9dp"
                 android:text="Weather and news updates go here. Lorem Epsome aksfgaksfaskfgaksfhkasjfhjkajfkjasfbajksfbasjk"/>
 
         </LinearLayout>
@@ -109,9 +115,9 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:background="@drawable/carousel_border"
-            android:padding="12dp"
-            android:layout_margin="32dp"
-            android:layout_height="650dp">
+            android:layout_margin="34.4dp"
+            android:padding="8.6dp"
+            android:layout_height="645dp">
 
             <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/MainCarousel"
@@ -125,15 +131,14 @@
         <!-- For Container 3-->
         <GridView
             android:layout_width="match_parent"
-            android:layout_height="118dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="35dp"
+            android:layout_height="165.98dp"
+            android:layout_marginLeft="34.4dp"
+            android:layout_marginRight="34.4dp"
             android:background="#ffffff"
             android:id="@+id/grid_for_buttons"
             android:numColumns="4"
-            android:layout_marginBottom="15dp"
-            android:verticalSpacing="18.4dp"
-            android:horizontalSpacing="17.6dp"
+            android:verticalSpacing="19.78dp"
+            android:horizontalSpacing="17.2dp"
             android:scrollbars="horizontal"
             android:gravity="center">
         </GridView>
@@ -160,9 +165,10 @@
     <!-- For Container 4-->
     <Button
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="129dp"
         android:layout_alignParentBottom="true"
-        android:textSize="17.6dp"
+        android:drawableLeft="@mipmap/hand_icon"
+        android:textSize="25.8dp"
         android:background="@drawable/page_1_start_button"
         android:id="@+id/button_start"
         android:text="Touch to start"/>
